@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'pm-root',
@@ -6,5 +9,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'PSWM_FrontEnd_Project';
+  title = 'PSWM';
+
+
+
+  constructor() { }
+
+  ngOnInit() {
+
+
+  }
+
+
 }
