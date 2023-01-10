@@ -42,13 +42,14 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  constructor(private auth: AuthService, private _snackBar: MatSnackBar,) { }
+  constructor(private _auth: AuthService, private _snackBar: MatSnackBar,) { }
 
   ngOnInit(): void {
 
   }
 
   memberSubmit() {
+    this._auth.testHttpRequest();
     console.log(this.loginForm.value);
   }
   adminSubmit() {
