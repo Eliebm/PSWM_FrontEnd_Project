@@ -2,36 +2,83 @@
 
     <div>
 
+        <mat-tab-group color="accent" dynamicHeight>
+            <mat-tab label="Member ">
+                <form [formGroup]="loginForm">
+                    <br>
 
-        <form id='frame1' class='frame1' [formGroup]="loginForm">
-            <h1>LOGIN</h1>
+                    <mat-form-field class="form-control" appearance="legacy">
+                        <mat-label>Name </mat-label>
+                        <input matInput type='text' placeholder="Ex. Name" formControlName="name"
+                            (click)="clearErrorMessage()" aria-label="user input" autocomplete="off">
+                        <mat-error *ngIf="nameValid && nameValid.hasError('required')">
+                            Name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
 
-            <mat-form-field class="main-form-control" appearance="legacy">
-                <mat-label>Name </mat-label>
-                <input matInput type='text' placeholder="Ex. Name" formControlName="name" (click)="clearErrorMessage()"
-                    aria-label="user input" autocomplete="off">
-                <mat-error *ngIf="nameValid && nameValid.hasError('required')">
-                    Name is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
+                    <mat-form-field class="form-control" appearance="legacy">
+                        <mat-label>Password </mat-label>
+                        <input matInput type='password' formControlName="password" aria-label="password input"
+                            (click)="clearErrorMessage()">
+                        <mat-error *ngIf="passwordValid && passwordValid.hasError('required')">
+                            Password is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <h2></h2>
 
-            <mat-form-field class="main-form-control" appearance="legacy">
-                <mat-label>Password </mat-label>
-                <input matInput type='password' formControlName="password" aria-label="password input"
-                    (click)="clearErrorMessage()">
-                <mat-error *ngIf="passwordValid && passwordValid.hasError('required')">
-                    Password is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
+                    <button mat-raised-button color="primary" aria-label="login button" [disabled]="!loginForm.valid"
+                        (click)="memberSubmit()">Sign In
+                        <mat-icon>login</mat-icon></button>
+                    <br>
+                    <div class="signup">
+                        <p>No Account ? <a routerLink="/signUp">Register</a></p>
+                    </div>
+                    <br>
+                </form>
+            </mat-tab>
+            <mat-tab label="Administrator">
+
+                <form [formGroup]="adminLogiForm">
+                    <br>
+                    <mat-form-field class="form-control" appearance="legacy">
+                        <mat-label>Name </mat-label>
+                        <input matInput type='text' placeholder="Ex. Name" formControlName="adminName"
+                            (click)="clearErrorMessage()" aria-label="user input" autocomplete="off">
+                        <mat-error *ngIf="adminNameValid && adminNameValid.hasError('required')">
+                            Name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="form-control" appearance="legacy">
+                        <mat-label>Password </mat-label>
+                        <input matInput type='password' aria-label="password input" formControlName="adminPass1"
+                            (click)="clearErrorMessage()">
+                        <mat-error *ngIf="adminPass1Valid && adminPass1Valid.hasError('required')">
+                            Password is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="form-control" appearance="legacy">
+                        <mat-label>Second Password </mat-label>
+                        <input matInput type='password' aria-label="password input" formControlName="adminPass2"
+                            (click)="clearErrorMessage()">
+                        <mat-error *ngIf="adminPass2Valid && adminPass2Valid.hasError('required')">
+                            Password 2 is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
 
 
-            <button mat-raised-button aria-label="login button" color="primary" [disabled]="!loginForm.valid"
-                (click)="submit()">LOGIN</button>
-            <div class="signup">
-                <p>No Account ? <a routerLink="/signUp">SignUp</a></p>
-            </div>
+                    <button mat-raised-button color="accent" aria-label="login button" [disabled]="!adminLogiForm.valid"
+                        (click)="adminSubmit()">Sign In
+                        <mat-icon>login</mat-icon></button>
+                    <br>
 
-        </form>
+
+                </form>
+
+            </mat-tab>
+        </mat-tab-group>
+
+
     </div>
 
 </div>
