@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClientInterceptor } from '../http-client.interceptor';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   testHttpRequest() {
-    this.http.get(this.apiUrl + "Login/GetHello()", {}).subscribe(data => data);
+    this.http.post(this.apiUrl + "Login/GetAllProvinces()", {}).subscribe(data => data);
   }
   isUserLoggedIn: boolean = false;
 

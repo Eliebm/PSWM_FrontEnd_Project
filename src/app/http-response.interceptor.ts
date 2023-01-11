@@ -32,11 +32,17 @@ export class HttpResponseInterceptor implements HttpInterceptor {
           if (error.status == 401) {
             alert('Unauthorize access!!!')
           }
-          if (error.status == 404) {
+          else if (error.status == 404) {
             alert('Page Not Found!!!')
           }
-          if (error.status == 0) {
-            this._snackBar.open("Error code " + error.status, 'Ok', {
+          else if (error.status == 0) {
+            this._snackBar.open("Could Not Connect to server status:" + error.status, 'Ok', {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+            });
+          }
+          else if (error.status == 200) {
+            this._snackBar.open("Database connection error  " + error.status, 'Ok', {
               horizontalPosition: this.horizontalPosition,
               verticalPosition: this.verticalPosition,
             });

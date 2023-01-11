@@ -7,7 +7,7 @@ export const environment = {
   baseUrl: 'http://localhost:44229/api/'
 
   //for docker !
-  // baserUrl:'http://localhost:5000/'
+  //baseUrl: 'http://localhost:5000/api/'
 };
 
 /*
