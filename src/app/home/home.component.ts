@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
+
 import { AuthService } from '../auth/auth.service';
+import { LoginRoutingModule } from '../login/login-routing.module';
 
 @Component({
   selector: 'pm-home',
@@ -10,14 +11,18 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HomeComponent implements OnInit {
   paramValue$: any;
-  @Output() notifyRoute: EventEmitter<string> = new EventEmitter<string>();
-  constructor(private auth: AuthService, private activatedRoute: ActivatedRoute) { }
+
+  constructor(private auth: AuthService) { }
 
 
 
 
   ngOnInit(): void {
-    this.notifyRoute.emit('home');
+    if (this.auth.isUserLoggedIn == true) {
+      this.auth.refreshToken;
+    } else { this.auth.logout; }
   }
+
+
 
 }

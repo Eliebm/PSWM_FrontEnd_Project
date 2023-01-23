@@ -9,7 +9,7 @@
 
                     <mat-form-field class="form-control" appearance="legacy">
                         <mat-label>Name </mat-label>
-                        <input matInput type='text' placeholder="Ex. Name" formControlName="name"
+                        <input matInput type='text' placeholder="Ex. Name" formControlName="userName"
                             (click)="clearErrorMessage()" aria-label="user input" autocomplete="off">
                         <mat-error *ngIf="nameValid && nameValid.hasError('required')">
                             Name is <strong>required</strong>

@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   loginForm = new FormGroup({
-    name: new FormControl(null, [Validators.required]),
+    userName: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required])
 
   });
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
 
   get nameValid() {
-    return this.loginForm.get('name');
+    return this.loginForm.get('userName');
   }
   get passwordValid() {
     return this.loginForm.get('password');
@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
   }
 
   memberSubmit() {
-    this._auth.testHttpRequest();
-    console.log(this.loginForm.value);
+    this._auth.testHttpRequest(this.loginForm.value);
+
   }
   adminSubmit() {
     console.log(this.adminLogiForm.value);

@@ -30,7 +30,10 @@ export class HttpResponseInterceptor implements HttpInterceptor {
         },
         error: (error) => {
           if (error.status == 401) {
-            alert('Unauthorize access!!!')
+            this._snackBar.open("Unauthorize access :  Invalid Email or password ", 'Ok', {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+            });
           }
           else if (error.status == 404) {
             alert('Page Not Found!!!')
