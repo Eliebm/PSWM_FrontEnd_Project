@@ -20,18 +20,18 @@ export class LoginComponent implements OnInit {
 
   adminLogiForm = new FormGroup({
     adminName: new FormControl(null, [Validators.required]),
-    adminPass1: new FormControl(null, [Validators.required]),
-    adminPass2: new FormControl(null, [Validators.required])
+    adminid: new FormControl(null, [Validators.required]),
+    adminPass: new FormControl(null, [Validators.required])
   });
   get adminNameValid() {
     return this.adminLogiForm.get('adminName');
   }
-  get adminPass1Valid() {
-    return this.adminLogiForm.get('adminPass1');
+  get adminidValid() {
+    return this.adminLogiForm.get('adminid');
   }
 
-  get adminPass2Valid() {
-    return this.adminLogiForm.get('adminPass2');
+  get adminPassValid() {
+    return this.adminLogiForm.get('adminPass');
   }
 
 

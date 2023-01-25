@@ -50,19 +50,19 @@
                     </mat-form-field>
 
                     <mat-form-field class="form-control" appearance="legacy">
-                        <mat-label>Password </mat-label>
-                        <input matInput type='password' aria-label="password input" formControlName="adminPass1"
+                        <mat-label>Official ID</mat-label>
+                        <input matInput type='text' aria-label="id input" formControlName="adminid"
                             (click)="clearErrorMessage()">
-                        <mat-error *ngIf="adminPass1Valid && adminPass1Valid.hasError('required')">
-                            Password is <strong>required</strong>
+                        <mat-error *ngIf="adminidValid && adminidValid.hasError('required')">
+                            ID is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field class="form-control" appearance="legacy">
-                        <mat-label>Second Password </mat-label>
-                        <input matInput type='password' aria-label="password input" formControlName="adminPass2"
+                        <mat-label>Password </mat-label>
+                        <input matInput type='password' aria-label="password input" formControlName="adminPass"
                             (click)="clearErrorMessage()">
-                        <mat-error *ngIf="adminPass2Valid && adminPass2Valid.hasError('required')">
-                            Password 2 is <strong>required</strong>
+                        <mat-error *ngIf="adminPassValid && adminPassValid.hasError('required')">
+                            Password is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
 

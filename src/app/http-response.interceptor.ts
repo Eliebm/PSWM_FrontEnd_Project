@@ -15,7 +15,7 @@ export class HttpResponseInterceptor implements HttpInterceptor {
 
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  constructor(private _snackBar: MatSnackBar,) { }
+  constructor(private _snackBar: MatSnackBar) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(

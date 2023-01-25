@@ -1,8 +1,9 @@
 export interface ILogin {
-    ID: string;
-    accessToken: string;
-    refreshToken: string;
-    issueDate: string;
-    expireDate: string;
+    ID: any;
+    accessToken: any;
+    refreshToken: any;
+    issueDate: any;
+    expireDate: any;
+    response: any;
 
 }

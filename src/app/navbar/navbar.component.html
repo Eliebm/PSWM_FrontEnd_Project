@@ -1,21 +1,34 @@
-<nav class="navbar navbar-expand-sm bg-success navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Prepaid Smart Water Metering</a>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+    <div class=" container-fluid">
+        <a class="navbar-brand" href="/Home">Prepaid Smart Water Metering</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="/Home">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Login">Logout</a>
-                </li>
+
+
+            </ul>
+            <ul class="navbar-nav ms-auto" style="justify-items:center;">
+                <li> <button class="notification" (click)="changecolor()">
+                        <span><i class="fa fa-envelope fa-lgs" [style.color]="envelopeNotification"
+                                matTooltip="Notifications" matTooltipPosition="below"></i></span>
+                        <span class="badge" [hidden]="isnotification">{{envolopeNumb}}</span>
+                    </button></li>
+                <li> <button class="exclamation" (click)="changecolor()">
+                        <span><i class="fa fa-exclamation-circle fa-lg" [style.color]="explamationNotification"
+                                matTooltip="Faults" matTooltipPosition="below"></i></span>
+                        <span class="badge" [hidden]="isExclamation">{{exclaNumb}}</span>
+                    </button></li>
+                <li><button class="btn btn-danger btn-sm" (click)="logout()">Sign-out</button></li>
             </ul>
         </div>
     </div>
 </nav>
+<br>
