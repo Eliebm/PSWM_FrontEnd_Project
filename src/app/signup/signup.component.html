@@ -1,0 +1,119 @@
+<div class="container">
+    <div class="section">
+        <h1>No Account ? Create One !</h1>
+
+    </div>
+    <div class="section-form">
+        <div class="free-trail">
+            <p aria-label="subscribe"><b>Sign Up.</b> It's Free</p>
+
+            <a href="/Login">
+                <mat-icon matTooltipClass="tooltip" matTooltip="Sign In" matTooltipPosition="above">
+                    login
+                </mat-icon>
+            </a>
+        </div>
+        <mat-stepper orientation="vertical" linear="true" #stepper animationDuration="1500">
+
+            <!--First form group-->
+
+            <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Account Login Info </ng-template>
+                    <mat-form-field>
+                        <input matInput placeholder="Account " aria-label="account name" formControlName="accountname"
+                            autocomplete="off">
+                        <mat-error *ngIf="accountnameValid && accountnameValid.hasError('required')">
+                            Name is <strong>required</strong></mat-error>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperNext [disabled]="accountnameValid && accountnameValid.invalid"
+                            aria-label="next button">Next</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <!-- Second form group-->
+
+            <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Fill out your Name</ng-template>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Name" aria-label="first name" formControlName="fname"
+                            autocomplete="off">
+                        <mat-error *ngIf="fnameValid && fnameValid.hasError('required')">
+                            Name is <strong>required</strong></mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Last Name" formControlName="lname" aria-label="last name"
+                            autocomplete="off">
+                        <mat-error *ngIf="lnameValid && lnameValid.hasError('required')">
+                            Last Name is <strong>required</strong></mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Phone</mat-label>
+                        <input matInput placeholder="Ex: 961-00-000000" formControlName="phone" aria-label="phone"
+                            autocomplete="off">
+                        <mat-error *ngIf="phoneValid && phoneValid.hasError('required')">
+                            Phone is <strong>required</strong></mat-error>
+                    </mat-form-field>
+
+                    <div>
+                        <button mat-button matStepperPrevious aria-label="back button">Back</button>
+                        <button mat-button matStepperNext aria-label="next button"
+                            [disabled]="fnameValid && fnameValid.invalid || lnameValid && lnameValid.invalid || phoneValid && phoneValid.invalid">Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup">
+                <form [formGroup]="thirdFormGroup">
+                    <ng-template matStepLabel>Fill out Your Email & Password </ng-template>
+
+                    <mat-form-field>
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" placeholder="Email" aria-label="email input "
+                            formControlName="email" autocomplete="off" placeholder="Ex. pat@example.com">
+                        <mat-error *ngIf="emailValid && emailValid.hasError('required')">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="emailValid && emailValid.hasError('email')">
+                            Please enter a valid email address
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="password" placeholder="Password" aria-label="password input"
+                            formControlName="password" autocomplete="off">
+                        <mat-error *ngIf="passwordValid && passwordValid.hasError('required')">
+                            Password is <strong>required</strong></mat-error>
+                    </mat-form-field>
+
+                    <div>
+                        <button mat-button matStepperPrevious aria-label="back button">Back</button>
+                        <button mat-button matStepperNext aria-label="next button"
+                            [disabled]="emailValid && emailValid.invalid || passwordValid && passwordValid.invalid">Next</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel="done">Done</ng-template>
+                <button class="last-step-button" mat-mini-fab color="warn" (click)="stepper.reset()"
+                    matTooltipClass="tooltip" matTooltip="clear" matTooltipPosition="below" aria-label="clear button">
+                    <mat-icon>clear</mat-icon>
+                </button>
+                <button class="last-step-button" mat-flat-button color="primary" type="submit" (click)="submit()"
+                    aria-label="submit form" aria-label="create account button">Create Account</button>
+
+
+
+                <div class="bottom-term">By clicking the button, you are agreeing to our <b
+                        class="bottom-term-bold">Terms
+                        and Services </b></div>
+            </mat-step>
+        </mat-stepper>
+
+
+    </div>
+
+</div>

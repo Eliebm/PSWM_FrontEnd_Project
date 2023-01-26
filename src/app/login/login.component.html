@@ -2,7 +2,7 @@
 
     <div>
 
-        <mat-tab-group color="accent" dynamicHeight>
+        <mat-tab-group color="accent" dynamicHeight (focusChange)="clearForm()">
             <mat-tab label="Member ">
                 <form [formGroup]="loginForm">
                     <br>
@@ -31,15 +31,23 @@
                         <mat-icon>login</mat-icon></button>
                     <br>
                     <div class="signup">
-                        <p>No Account ? <a routerLink="/signUp">Register</a></p>
+                        <p>No Account ? <a routerLink="/User/Signup">Register</a></p>
                     </div>
                     <br>
                 </form>
             </mat-tab>
             <mat-tab label="Administrator">
 
-                <form [formGroup]="adminLogiForm">
+                <form [formGroup]="adminLoginForm">
                     <br>
+                    <mat-form-field class="form-control" appearance="legacy">
+                        <mat-label>Official ID</mat-label>
+                        <input matInput type='number' placeholder="Only Number " aria-label="id input"
+                            formControlName="adminid" (click)="clearErrorMessage()" autocomplete="off">
+                        <mat-error *ngIf="adminidValid && adminidValid.hasError('required')">
+                            ID is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
                     <mat-form-field class="form-control" appearance="legacy">
                         <mat-label>Name </mat-label>
                         <input matInput type='text' placeholder="Ex. Name" formControlName="adminName"
@@ -49,26 +57,19 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field class="form-control" appearance="legacy">
-                        <mat-label>Official ID</mat-label>
-                        <input matInput type='text' aria-label="id input" formControlName="adminid"
-                            (click)="clearErrorMessage()">
-                        <mat-error *ngIf="adminidValid && adminidValid.hasError('required')">
-                            ID is <strong>required</strong>
-                        </mat-error>
-                    </mat-form-field>
+
                     <mat-form-field class="form-control" appearance="legacy">
                         <mat-label>Password </mat-label>
                         <input matInput type='password' aria-label="password input" formControlName="adminPass"
-                            (click)="clearErrorMessage()">
+                            (click)="clearErrorMessage()" autocomplete="off">
                         <mat-error *ngIf="adminPassValid && adminPassValid.hasError('required')">
                             Password is <strong>required</strong>
                         </mat-error>
                     </mat-form-field>
 
 
-                    <button mat-raised-button color="accent" aria-label="login button" [disabled]="!adminLogiForm.valid"
-                        (click)="adminSubmit()">Sign In
+                    <button mat-raised-button color="accent" aria-label="login button"
+                        [disabled]="!adminLoginForm.valid" (click)="adminSubmit()">Sign In
                         <mat-icon>login</mat-icon></button>
                     <br>
 

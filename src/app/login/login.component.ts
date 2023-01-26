@@ -13,25 +13,25 @@ export class LoginComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   loginForm = new FormGroup({
-    userName: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required])
+    userName: new FormControl("", [Validators.required]),
+    password: new FormControl("", [Validators.required])
 
   });
 
-  adminLogiForm = new FormGroup({
-    adminName: new FormControl(null, [Validators.required]),
-    adminid: new FormControl(null, [Validators.required]),
-    adminPass: new FormControl(null, [Validators.required])
+  adminLoginForm = new FormGroup({
+    adminid: new FormControl("", [Validators.required]),
+    adminName: new FormControl("", [Validators.required]),
+    adminPass: new FormControl("", [Validators.required])
   });
   get adminNameValid() {
-    return this.adminLogiForm.get('adminName');
+    return this.adminLoginForm.get('adminName');
   }
   get adminidValid() {
-    return this.adminLogiForm.get('adminid');
+    return this.adminLoginForm.get('adminid');
   }
 
   get adminPassValid() {
-    return this.adminLogiForm.get('adminPass');
+    return this.adminLoginForm.get('adminPass');
   }
 
 
@@ -49,12 +49,14 @@ export class LoginComponent implements OnInit {
   }
 
   memberSubmit() {
-    this._auth.testHttpRequest(this.loginForm.value);
+    this._auth.userLogin(this.loginForm.value);
+    this.clearForm();
 
   }
   adminSubmit() {
-    console.log(this.adminLogiForm.value);
-    alert(this.adminNameValid?.value);
+    this._auth.adminLogin(this.adminLoginForm.value);
+    this.clearForm();
+
   }
   clearErrorMessage(): void {
     this._snackBar.dismiss();
@@ -64,6 +66,11 @@ export class LoginComponent implements OnInit {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });
+  }
+  clearForm() {
+    this.adminLoginForm.reset();
+    this.loginForm.reset();
+    console.log("clear");
   }
 }
 

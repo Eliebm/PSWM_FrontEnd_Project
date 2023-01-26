@@ -1,0 +1,236 @@
+$redColor: hsl(0, 100%, 74%);
+$blueColor: hsl(248, 32%, 49%);
+$greenColor: hsl(154, 59%, 51%);
+
+
+.container {
+    background-image: linear-gradient(blue, rgba(0, 0, 255, 0.683), rgba(0, 0, 255, 0.532), rgba(0, 0, 255, 0.326));
+
+}
+
+@media only screen and (max-width:767px) {
+
+    .container {
+        min-width: 400px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: center;
+        overflow: hidden;
+
+
+
+    }
+
+    .section h1 {
+        margin-top: 10px;
+        max-width: 70%;
+        text-align: center;
+        margin-left: 1.5em;
+        padding: 5px 0px 0px 40px;
+    }
+
+
+    .mat-stepper-vertical {
+        max-width: 80%;
+        margin-left: 2.8em;
+    }
+
+    .free-trail {
+        max-width: 70%;
+        justify-content: center;
+        margin-left: 2.8em;
+        margin-top: -25em;
+
+
+    }
+
+    .last-step-button {
+        margin: 10px 0 0 10px;
+    }
+
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding-top: 1px;
+        align-content: center;
+        min-width: auto;
+        min-height: 100%;
+    }
+
+    .section {
+        padding-left: 40px;
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    .free-trail {
+        max-width: 90%;
+        margin-left: 2.5%;
+    }
+
+    h1 {
+        margin: 10% 0 0 5%;
+
+
+    }
+
+    .last-step-button {
+        margin: 10px 0 0 10%;
+    }
+}
+
+@media only screen and (min-width:1024px) {
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+
+        padding: 1% 2% 0 2%;
+
+        min-height: 98%;
+    }
+
+    .section {
+        padding-top: 10%;
+        text-align: left;
+
+    }
+
+    .last-step-button {
+
+        margin: 10px 0 0 15%;
+    }
+
+
+}
+
+
+h1 {
+
+    color: rgba(0, 0, 0, 0.701);
+    font-size: 2em;
+    font-weight: 700;
+    text-align: left;
+    width: 100%;
+}
+
+
+
+.section {
+
+
+    width: 35%;
+    text-align: center;
+    margin: 1em;
+    min-width: 400px;
+
+
+}
+
+.section-form {
+    padding: 1em;
+    width: 35%;
+    min-width: 400px;
+    align-content: center;
+    margin: 2em;
+
+
+
+}
+
+.free-trail {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: $blueColor;
+
+    width: 95%;
+    height: 35px;
+    color: white;
+
+    text-align: left;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 15px 0 0 20px;
+    margin-bottom: 25px;
+    border: none;
+    box-shadow: 0 7px 4px 0px rgba(0, 0, 0, 0.322);
+
+
+
+
+}
+
+.free-trail a {
+    align-self: center;
+    margin-right: 1em;
+    font-size: larger;
+    text-decoration: none;
+    margin-bottom: auto;
+    color: rgba(249, 246, 246, 0.632);
+
+}
+
+.free-trail a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.mat-stepper-vertical {
+    min-height: 440px;
+    max-height: fit-content;
+    margin-bottom: 27px;
+    border-radius: 10px;
+    box-shadow: 0 7px 4px 0px rgba(0, 0, 0, 0.322);
+}
+
+form {
+
+    width: 100%;
+    align-self: center;
+    padding-top: 13px;
+    text-align: center;
+
+    font-size: 400;
+
+
+
+
+}
+
+
+
+.bottom-term {
+    color: hsl(245, 11%, 59%);
+    margin-top: 10px;
+    font-size: 10px;
+    padding-bottom: 10px;
+    font-weight: 700;
+
+}
+
+.bottom-term-bold {
+    color: $redColor ;
+
+
+
+}
+
+.mat-radio-button {
+    margin: 15px;
+}
+
+mat-form-field {
+    margin: 0px 5% 2% 0px;
+}

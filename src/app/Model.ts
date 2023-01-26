@@ -7,3 +7,13 @@ export interface ILogin {
     response: any;
 
 }
+
+export interface ISignup {
+    account: any;
+    name: any;
+    lname: any;
+    phone: any;
+    email: any;
+    pass: any;
+
+}

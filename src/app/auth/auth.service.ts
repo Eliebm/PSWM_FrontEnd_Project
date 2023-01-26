@@ -24,18 +24,41 @@ export class AuthService {
 
 
 
-  testHttpRequest(sendata: object) {
+  userLogin(sendata: object) {
     this.http.post<ILogin>(this.apiUrl + "Login/Login()", sendata).subscribe(data => {
       this.setTokenStorage("access_token", data.accessToken);
       this.setTokenStorage("refresh_token", data.refreshToken);
       this.setTokenStorage("exp", data.expireDate);
       this.setWebStorageData("user", data.ID);
-      location.href = "/Home";
+      location.href = "/User/Home";
+
+    });
+
+  }
+  adminLogin(sendata: object) {
+    this.http.post(this.apiUrl + "Login/AdminLogin()", sendata).subscribe(data => {
+      if (data === 1) {
+        location.href = "/Admin/Home";
+
+
+
+      }
 
     });
 
   }
 
+  userSignup(sendata: object) {
+    this.http.post(this.apiUrl + "Login/SignUp()", sendata).subscribe(data => {
+      if (data === 1) {
+        this._snackBar.open("Congratulations:  Your account has been successfully created.", 'Ok', {
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        })
+      }
+    });
+
+  }
 
   setTokenStorage(type: string, token: string) {
     localStorage.setItem(type, token)

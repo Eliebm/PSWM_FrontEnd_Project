@@ -23,32 +23,42 @@ export class HttpResponseInterceptor implements HttpInterceptor {
         next: (event) => {
           if (event instanceof HttpResponse) {
             if (event.status == 401) {
-              alert('Unauthorize access!!!')
+
             }
           }
           return event;
         },
         error: (error) => {
-          if (error.status == 401) {
+          if (error.status === 401) {
             this._snackBar.open("Unauthorize access :  Invalid Email or password ", 'Ok', {
               horizontalPosition: this.horizontalPosition,
               verticalPosition: this.verticalPosition,
             });
           }
-          else if (error.status == 404) {
-            alert('Page Not Found!!!')
+          else if (error.status === 404) {
+            this._snackBar.open("The HTTP 404 Not Found  " + error.status, 'Ok', {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+            });
           }
-          else if (error.status == 0) {
+          else if (error.status === 0) {
             this._snackBar.open("Could Not Connect to server status:" + error.status, 'Ok', {
               horizontalPosition: this.horizontalPosition,
               verticalPosition: this.verticalPosition,
             });
           }
-          else if (error.status == 200) {
+          else if (error.status === 400) {
             this._snackBar.open("Database connection error  " + error.status, 'Ok', {
               horizontalPosition: this.horizontalPosition,
               verticalPosition: this.verticalPosition,
             });
+          }
+          else {
+            this._snackBar.open("Error code: " + error.status, 'Ok', {
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+            });
+
           }
         }
 
