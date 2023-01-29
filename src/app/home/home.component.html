@@ -34,11 +34,28 @@
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        change password
+                        Change Password
                     </mat-panel-title>
 
                 </mat-expansion-panel-header>
-                <p>This is the primary content of the panel.</p>
+                <mat-label>New Password</mat-label>
+                <form [formGroup]="changePasswordFormGroup">
+                    <mat-form-field class="changepass">
+                        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password"
+                            aria-label="password input" formControlName="changePass" autocomplete="off">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="changePassValid && changePassValid.hasError('required')">
+                            Password is <strong>required</strong></mat-error>
+
+                    </mat-form-field>
+                    <button mat-icon-button matTooltip="Save" color="primary" aria-label="save changed password "
+                        [disabled]="changePasswordFormGroup.invalid">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                </form>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
@@ -50,9 +67,42 @@
                 <input matInput type="text" aria-label="searchbar" name="searchString" (keyup)="filterBySearch($event)"
                     [disabled]="isDisable">
             </mat-form-field>
-            <button mat-fab matTooltip="Add Device" color="primary" aria-label="Example fab with a heart icon">
+            <button mat-fab matTooltip="Add Device" color="primary" aria-label="add new device"
+                (click)="openAddDeviceDialog()">
                 <mat-icon>add</mat-icon>
             </button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-light table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Quantity Meter</th>
+                        <th>Status</th>
+                        <th>Gov.Status</th>
+                        <th>option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 1</td>
+                        <td>2</td>
+                        <td><mat-progress-bar color="primary" mode="determinate" [value]="25" matTooltip="25%">
+                            </mat-progress-bar></td>
+                        <td><mat-slide-toggle color="primary" [checked]="true" disabled="true" matTooltip="ON">
+
+                            </mat-slide-toggle></td>
+                        <td><mat-slide-toggle color="accent" [checked]="true" disabled="true" matTooltip="OFF">
+
+                            </mat-slide-toggle></td>
+                        <td><button mat-icon-button matTooltip="More details" color="primary"
+                                aria-label="table more button">
+                                <mat-icon>menu</mat-icon>
+                            </button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 

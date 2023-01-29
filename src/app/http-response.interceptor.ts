@@ -8,14 +8,23 @@ import {
 } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class HttpResponseInterceptor implements HttpInterceptor {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
 
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(private _snackBar: MatSnackBar, private _router: Router) {
+    if (this._router.url === '/Login') {
+      this.verticalPosition = 'top';
+    }
+
+  }
+
+
+
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
@@ -57,6 +66,7 @@ export class HttpResponseInterceptor implements HttpInterceptor {
             this._snackBar.open("Error code: " + error.status, 'Ok', {
               horizontalPosition: this.horizontalPosition,
               verticalPosition: this.verticalPosition,
+
             });
 
           }

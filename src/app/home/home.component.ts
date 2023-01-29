@@ -1,21 +1,30 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AddDeviceDialogComponent } from '../add-device-dialog/add-device-dialog.component';
 
 import { AuthService } from '../auth/auth.service';
-import { LoginRoutingModule } from '../login/login-routing.module';
-import { ILogin } from '../Model';
+
 
 @Component({
   selector: 'pm-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+
 })
 export class HomeComponent implements OnInit {
   userId: any;
   refresh_token: any;
   access_token: any;
   isDisable: boolean = false;
-  constructor(private auth: AuthService) { }
+  hide = true;
+
+
+  constructor(private auth: AuthService, public dialog: MatDialog) { }
+
+  changePasswordFormGroup = new FormGroup({
+    changePass: new FormControl(null, [Validators.required])
+  });
 
 
 
@@ -36,6 +45,17 @@ export class HomeComponent implements OnInit {
 
 
   }
+  get changePassValid() {
+    return this.changePasswordFormGroup.get('changePass');
+  }
+
+  openAddDeviceDialog(): void {
+
+    const dialogRef = this.dialog.open(AddDeviceDialogComponent, {
+
+    });
+  }
+
 
   filterBySearch($event: any) {
     console.log($event.value);

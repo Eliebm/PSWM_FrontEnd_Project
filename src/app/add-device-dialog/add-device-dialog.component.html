@@ -1,0 +1,82 @@
+<div class="container">
+    <p>New Device</p>
+    <form class="form" [formGroup]="addForm">
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="name" aria-label="name input " formControlName="Name" autocomplete="off">
+            <mat-error *ngIf="NameValidation && NameValidation.hasError('required')">
+                Common Name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>Province</mat-label>
+            <mat-select formControlName="province" [(value)]="provinceSelectedString" autocomplete="off">
+                <mat-option *ngFor=" let province of provinceData" value="{{province.Id}}">
+                    {{province.Name}}
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="provinceValidation && provinceValidation.hasError('required')">
+                Province is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>District</mat-label>
+            <mat-select formControlName="district" autocomplete="off" [disabled]="districtDisable">
+                <mat-option value="dist1">
+                    city1
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="districtValidation && districtValidation.hasError('required')">
+                district is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" autocomplete="off" [disabled]="cityDisable">
+                <mat-option value="city1">
+                    city1
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="cityValidation && cityValidation.hasError('required')">
+                city is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>Street</mat-label>
+            <input matInput placeholder="street " aria-label="Capital input " formControlName="street"
+                autocomplete="off">
+            <mat-error *ngIf="streetValidation && streetValidation.hasError('required')">
+                Capital is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>Building</mat-label>
+            <input matInput placeholder="building #000 or name" aria-label="building input" formControlName="building"
+                autocomplete="off">
+            <mat-error *ngIf="buildingValidation && buildingValidation.hasError('required')">
+                Region is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+
+
+
+
+        <div class="button-row">
+            <button mat-icon-button color="primary" aria-label="Save icon" #tooltip="matTooltip" matTooltip="Save !"
+                matTooltipPosition="above" (click)="saveNewData()" [disabled]="!addForm.valid">
+                <mat-icon>save</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" aria-label="Cancel icon" #tooltip="matTooltip" matTooltip="Cancel !"
+                matTooltipPosition="above" (click)="closeDialoge()">
+                <mat-icon>cancel</mat-icon>
+            </button>
+        </div>
+    </form>
+</div>

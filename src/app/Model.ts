@@ -17,3 +17,16 @@ export interface ISignup {
     pass: any;
 
 }
+
+export interface Iprovince {
+    Id: any;
+    Name: any;
+}
+export interface Idistrict {
+    Id: any;
+    Name: any;
+}
+export interface Icity {
+    Id: any;
+    Name: any;
+}

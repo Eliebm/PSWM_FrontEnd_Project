@@ -6,12 +6,14 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth/auth.service';
 
 @Injectable()
 export class HttpClientInterceptor implements HttpInterceptor {
-  token: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzQxNTYzMDQsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjUwMDAiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo1MDAwIn0.L88T-XR6_23CReTVNtF5ZacITFXNddP-_TTOvWXCDDM';
-  constructor() { }
 
+  constructor(private _auth: AuthService) { }
+
+  token: any = this._auth.getTokenStorage("access_token");
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(this.addAuthenticationToken(request));
   }
