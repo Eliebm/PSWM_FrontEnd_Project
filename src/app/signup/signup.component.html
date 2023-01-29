@@ -82,8 +82,12 @@
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput type="password" placeholder="Password" aria-label="password input"
-                            formControlName="password" autocomplete="off">
+                        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password"
+                            aria-label="password input" formControlName="password" autocomplete="off">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
                         <mat-error *ngIf="passwordValid && passwordValid.hasError('required')">
                             Password is <strong>required</strong></mat-error>
                     </mat-form-field>

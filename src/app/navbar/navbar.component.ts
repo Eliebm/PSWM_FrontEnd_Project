@@ -11,18 +11,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 export class NavbarComponent implements OnInit {
 
   constructor(private auth: AuthService) { }
-  envelopeNotification = 'white';
-  explamationNotification = 'white';
-  exclaNumb = 5;
-  envolopeNumb = 5;
-  isExclamation = false;
-  isnotification = true;
+
 
   ngOnInit(): void {
 
-  }
-  changecolor(): void {
-    this.envelopeNotification = 'red';
   }
 
   logout(): void {

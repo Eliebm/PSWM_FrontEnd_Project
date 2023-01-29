@@ -1,4 +1,114 @@
 .main-container {
-    margin: 0 35px 0 35px;
-    background-color: aqua;
+
+    background-color: lightblue;
+    min-height: 94.7%;
+
+}
+
+mat-card {
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+
+.searchbar {
+    font-weight: 900;
+    font-size: larger;
+}
+
+
+@media screen and (min-width:1024px) {
+
+    .main-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+    }
+
+    .left-section {
+        width: 20%;
+        margin: 50px 10px 10px 25px;
+    }
+
+    .right-section {
+        width: 65%;
+        margin-left: 10px;
+
+    }
+
+    .row {
+        width: 70%;
+        margin: 5% 50px;
+    }
+
+
+    .searchbar {
+        min-width: 50%;
+        margin-right: 15px;
+        margin-bottom: 10px;
+
+    }
+}
+
+@media screen and (min-width:767px) and (max-width:1020px) {
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        min-height: 110%;
+
+    }
+
+    .left-section {
+        margin: 25px 10%;
+        max-width: 80%;
+
+
+    }
+
+    .right-section {
+        margin: 25px 10%;
+        max-width: 80%;
+        background-color: greenyellow;
+    }
+
+    .row {
+        width: 55%;
+
+    }
+
+    .searchbar {
+
+        margin-left: 35%;
+    }
+}
+
+@media screen and (max-width:750px) {
+    .main-container {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+    }
+
+    .left-section {
+        margin-bottom: 20px;
+        background-color: rgb(76, 0, 255);
+    }
+
+    .right-section {
+        background-color: red;
+    }
 }

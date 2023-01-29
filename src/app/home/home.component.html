@@ -1,4 +1,59 @@
 <pm-navbar></pm-navbar>
+<br>
 <div class="main-container">
-    <p>home works!</p>
+    <div class="left-section">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Personal Information</mat-card-title>
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                <ul>
+                    <li>
+                        <h3>Account : </h3>
+                    </li>
+                    <li>
+                        <h3>Name : </h3>
+                    </li>
+                    <li>
+                        <h3>Phone : </h3>
+                    </li>
+                    <li>
+                        <h3>Email : </h3>
+                    </li>
+
+                </ul>
+
+            </mat-card-content>
+        </mat-card>
+        <h6></h6>
+        <mat-divider></mat-divider>
+        <h6></h6>
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        change password
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <p>This is the primary content of the panel.</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <div class="right-section">
+        <div class="row">
+            <mat-form-field class="searchbar" appearance="legacy">
+                <mat-label>Search...</mat-label>
+                <input matInput type="text" aria-label="searchbar" name="searchString" (keyup)="filterBySearch($event)"
+                    [disabled]="isDisable">
+            </mat-form-field>
+            <button mat-fab matTooltip="Add Device" color="primary" aria-label="Example fab with a heart icon">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+
 </div>

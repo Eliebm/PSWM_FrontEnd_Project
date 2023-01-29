@@ -12,6 +12,7 @@ import { ISignup } from '../Model';
 export class SignupComponent implements OnInit {
 
   emailValue: string = "Email Address";
+  hide = true;
 
   constructor(private _auth: AuthService) { }
 

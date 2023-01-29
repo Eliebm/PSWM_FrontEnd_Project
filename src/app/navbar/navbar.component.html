@@ -16,16 +16,7 @@
 
             </ul>
             <ul class="navbar-nav ms-auto" style="justify-items:center;">
-                <li> <button class="notification" (click)="changecolor()">
-                        <span><i class="fa fa-envelope fa-lgs" [style.color]="envelopeNotification"
-                                matTooltip="Notifications" matTooltipPosition="below"></i></span>
-                        <span class="badge" [hidden]="isnotification">{{envolopeNumb}}</span>
-                    </button></li>
-                <li> <button class="exclamation" (click)="changecolor()">
-                        <span><i class="fa fa-exclamation-circle fa-lg" [style.color]="explamationNotification"
-                                matTooltip="Faults" matTooltipPosition="below"></i></span>
-                        <span class="badge" [hidden]="isExclamation">{{exclaNumb}}</span>
-                    </button></li>
+
                 <li><button class="btn btn-danger btn-sm" (click)="logout()">Sign-out</button></li>
             </ul>
         </div>

@@ -11,6 +11,8 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 export class LoginComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  hide = true;
+
 
   loginForm = new FormGroup({
     userName: new FormControl("", [Validators.required]),
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
   });
 
   adminLoginForm = new FormGroup({
-    adminid: new FormControl("", [Validators.required]),
+    adminid: new FormControl("", [Validators.required, Validators.pattern(/^[0-9]\d*$/)]),
     adminName: new FormControl("", [Validators.required]),
     adminPass: new FormControl("", [Validators.required])
   });
@@ -50,12 +52,12 @@ export class LoginComponent implements OnInit {
 
   memberSubmit() {
     this._auth.userLogin(this.loginForm.value);
-    this.clearForm();
+
 
   }
   adminSubmit() {
     this._auth.adminLogin(this.adminLoginForm.value);
-    this.clearForm();
+
 
   }
   clearErrorMessage(): void {

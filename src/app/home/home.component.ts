@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   userId: any;
   refresh_token: any;
   access_token: any;
+  isDisable: boolean = false;
   constructor(private auth: AuthService) { }
 
 
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.auth.getTokenStorage("access_token") === null || this.auth.getWebStorageData("user") === null) {
+    /*if (this.auth.getTokenStorage("access_token") === null || this.auth.getWebStorageData("user") === null) {
       this.auth.logout();
     } else {
       this.userId = this.auth.getWebStorageData("user");
@@ -31,11 +32,13 @@ export class HomeComponent implements OnInit {
 
     if (this.auth.isTokenExpired(this.auth.getTokenStorage("exp")) == true) {
       this.auth.refreshToken(this.userId, this.refresh_token);
-    }
+    }*/
 
 
   }
 
-
+  filterBySearch($event: any) {
+    console.log($event.value);
+  }
 
 }
