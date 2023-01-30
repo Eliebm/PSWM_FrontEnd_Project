@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddDeviceDialogComponent } from '../add-device-dialog/add-device-dialog.component';
 
 import { AuthService } from '../auth/auth.service';
+import { UserDataBindingService } from '../dataBinding/user-data-binding.service';
+import { ISignup } from '../Model';
 
 
 @Component({
@@ -18,9 +20,10 @@ export class HomeComponent implements OnInit {
   access_token: any;
   isDisable: boolean = false;
   hide = true;
+  userInfos: ISignup[] = [];
 
 
-  constructor(private auth: AuthService, public dialog: MatDialog) { }
+  constructor(private auth: AuthService, public dialog: MatDialog, private _databind: UserDataBindingService) { }
 
   changePasswordFormGroup = new FormGroup({
     changePass: new FormControl(null, [Validators.required])
@@ -31,7 +34,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    /*if (this.auth.getTokenStorage("access_token") === null || this.auth.getWebStorageData("user") === null) {
+    if (this.auth.getTokenStorage("access_token") === null || this.auth.getWebStorageData("user") === null) {
       this.auth.logout();
     } else {
       this.userId = this.auth.getWebStorageData("user");
@@ -41,10 +44,13 @@ export class HomeComponent implements OnInit {
 
     if (this.auth.isTokenExpired(this.auth.getTokenStorage("exp")) == true) {
       this.auth.refreshToken(this.userId, this.refresh_token);
-    }*/
-
+    }
+    this.fetchUSerInfo();
 
   }
+
+
+
   get changePassValid() {
     return this.changePasswordFormGroup.get('changePass');
   }
@@ -55,6 +61,19 @@ export class HomeComponent implements OnInit {
 
     });
   }
+  changePass() {
+    var send = { "id": this.userId, "password": this.changePassValid?.value };
+    this.auth.changePassword(send);
+    this.changePasswordFormGroup.reset();
+
+  }
+
+  fetchUSerInfo() {
+    this._databind.fetchUserInfos(this.userId).subscribe(data => this.userInfos = data);
+
+
+  }
+
 
 
   filterBySearch($event: any) {

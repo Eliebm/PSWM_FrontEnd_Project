@@ -9,18 +9,18 @@
                 </mat-card-title-group>
             </mat-card-header>
             <mat-card-content>
-                <ul>
+                <ul *ngFor="let userinfo of userInfos">
                     <li>
-                        <h3>Account : </h3>
+                        <h3>Account : {{userinfo.account}} </h3>
                     </li>
                     <li>
-                        <h3>Name : </h3>
+                        <h3>Name : {{userinfo.name}} </h3>
                     </li>
                     <li>
-                        <h3>Phone : </h3>
+                        <h3>Phone : {{userinfo.phone}} </h3>
                     </li>
                     <li>
-                        <h3>Email : </h3>
+                        <h3>Email : {{userinfo.email}} </h3>
                     </li>
 
                 </ul>
@@ -52,7 +52,7 @@
 
                     </mat-form-field>
                     <button mat-icon-button matTooltip="Save" color="primary" aria-label="save changed password "
-                        [disabled]="changePasswordFormGroup.invalid">
+                        [disabled]="changePasswordFormGroup.invalid" (click)="changePass()">
                         <mat-icon>save</mat-icon>
                     </button>
                 </form>
@@ -76,6 +76,7 @@
             <table class="table table-light table-striped table-responsive">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>City</th>
                         <th>Quantity Meter</th>
@@ -86,6 +87,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>0</td>
                         <td> 1</td>
                         <td>2</td>
                         <td><mat-progress-bar color="primary" mode="determinate" [value]="25" matTooltip="25%">

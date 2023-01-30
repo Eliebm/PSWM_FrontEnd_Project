@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
   secondFormGroup = new FormGroup({
     fname: new FormControl(null, [Validators.required]),
     lname: new FormControl(null, [Validators.required]),
-    phone: new FormControl(null, [Validators.required, Validators.pattern("961-00-000000")]),
+    phone: new FormControl(null, [Validators.required, Validators.pattern("[0-9]{11}$")]),
   });
 
   thirdFormGroup = new FormGroup({

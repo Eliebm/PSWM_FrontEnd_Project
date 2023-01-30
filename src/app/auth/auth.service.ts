@@ -108,4 +108,20 @@ export class AuthService {
     }
     );
   }
+
+  changePassword(sendata: object) {
+    this.http.post(this.apiUrl + "Login/ChangeUserPassword()", sendata).subscribe(data => {
+      if (data === 1) {
+        this._snackBar.open("Password Changed:  Your Password has been been changed successfully", 'Ok', {
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+
+        })
+
+      }
+
+    });
+
+
+  }
 }

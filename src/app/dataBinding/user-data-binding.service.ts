@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Iprovince } from '../Model';
+import { Icity, Idistrict, Iprovince, ISignup } from '../Model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,28 @@ export class UserDataBindingService {
     return this.http.post<Iprovince[]>(this.apiUrl + 'UserHome/GetAllProvinces()', {})
       .pipe(tap(data => data)
         , catchError(this.handleError));
+
+  }
+
+  fetchDistrict(id: any): Observable<Idistrict[]> {
+    var data = { 'Id': id };
+    return this.http.post<Idistrict[]>(this.apiUrl + 'UserHome/GetAllDistricts()', data)
+      .pipe(tap(data => data), catchError(this.handleError));
+
+  }
+
+  fetchCities(id: any): Observable<Icity[]> {
+    var data = { 'Id': id }
+    return this.http.post<Icity[]>(this.apiUrl + 'UserHome/GetAllCities()', data)
+      .pipe(tap(data => data), catchError(this.handleError));
+
+  }
+
+  fetchUserInfos(id: any): Observable<ISignup[]> {
+    var data = { 'account': id }
+    return this.http.post<ISignup[]>(this.apiUrl + 'UserHome/FetchUserData()', data).pipe(tap(data => data), catchError(this.handleError));
+
+
 
   }
 

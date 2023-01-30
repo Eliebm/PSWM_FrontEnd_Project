@@ -10,7 +10,8 @@
         </mat-form-field>
         <mat-form-field class="input-form" appearance="fill">
             <mat-label>Province</mat-label>
-            <mat-select formControlName="province" [(value)]="provinceSelectedString" autocomplete="off">
+            <mat-select formControlName="province" [(value)]="provinceSelectedid"
+                (selectionChange)="provinceSelected(provinceSelectedid)" autocomplete="off">
                 <mat-option *ngFor=" let province of provinceData" value="{{province.Id}}">
                     {{province.Name}}
                 </mat-option>
@@ -22,9 +23,11 @@
         </mat-form-field>
         <mat-form-field class="input-form" appearance="fill">
             <mat-label>District</mat-label>
-            <mat-select formControlName="district" autocomplete="off" [disabled]="districtDisable">
-                <mat-option value="dist1">
-                    city1
+            <mat-select formControlName="district" [(value)]="districtSelectedid"
+                (selectionChange)="selectedDistrict(districtSelectedid)" autocomplete="off"
+                [disabled]="districtDisable">
+                <mat-option *ngFor=" let dis of districtData" value="{{dis.Id}}">
+                    {{dis.Name}}
                 </mat-option>
             </mat-select>
 
@@ -35,9 +38,9 @@
 
         <mat-form-field class="input-form" appearance="fill">
             <mat-label>City</mat-label>
-            <mat-select formControlName="city" autocomplete="off" [disabled]="cityDisable">
-                <mat-option value="city1">
-                    city1
+            <mat-select formControlName="city" [(value)]="citySelectedid" autocomplete="off" [disabled]="cityDisable">
+                <mat-option *ngFor=" let city of citiesData" value="{{city.Id}}">
+                    {{city.Name}}
                 </mat-option>
             </mat-select>
 

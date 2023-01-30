@@ -10,10 +10,12 @@ import { AuthService } from './auth/auth.service';
 
 @Injectable()
 export class HttpClientInterceptor implements HttpInterceptor {
+  token: any;
+  constructor(private _auth: AuthService) {
+    this.token = this._auth.getTokenStorage("access_token");
+  }
 
-  constructor(private _auth: AuthService) { }
 
-  token: any = this._auth.getTokenStorage("access_token");
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(this.addAuthenticationToken(request));
   }
