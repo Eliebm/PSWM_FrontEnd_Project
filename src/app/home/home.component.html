@@ -64,15 +64,14 @@
         <div class="row">
             <mat-form-field class="searchbar" appearance="legacy">
                 <mat-label>Search...</mat-label>
-                <input matInput type="text" aria-label="searchbar" name="searchString" (keyup)="filterBySearch($event)"
-                    [disabled]="isDisable">
+                <input matInput type="text" aria-label="searchbar" name="searchString" (keyup)="filterBySearch($event)">
             </mat-form-field>
             <button mat-fab matTooltip="Add Device" color="primary" aria-label="add new device"
                 (click)="openAddDeviceDialog()">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive" *ngIf="devicesData?.length">
             <table class="table table-light table-striped table-responsive">
                 <thead>
                     <tr>
@@ -86,16 +85,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td> 1</td>
-                        <td>2</td>
-                        <td><mat-progress-bar color="primary" mode="determinate" [value]="25" matTooltip="25%">
+                    <tr *ngFor="let device of filteredDeviceData">
+                        <td>{{device.id}}</td>
+                        <td> {{device.name}}</td>
+                        <td>{{device.cityname}}</td>
+                        <td><mat-progress-bar color="primary" mode="determinate" [value]="device.quantityused"
+                                matTooltip="{{device.quantityused}} % of {{device.rechargequantity}}">
                             </mat-progress-bar></td>
-                        <td><mat-slide-toggle color="primary" [checked]="true" disabled="true" matTooltip="ON">
+                        <td><mat-slide-toggle color="primary" [checked]="device.userstatus === 'true' ? true : false"
+                                disabled="true" [matTooltip]="device.userstatus ==='true' ? 'ON' : 'OFF'">
 
                             </mat-slide-toggle></td>
-                        <td><mat-slide-toggle color="accent" [checked]="true" disabled="true" matTooltip="OFF">
+                        <td><mat-slide-toggle color="accent" [checked]="device.adminstatus === 'true' ? true : false"
+                                disabled="true"
+                                [matTooltip]="device.adminstatus ==='true' ? 'Authorized' : 'Unauthorized'">
 
                             </mat-slide-toggle></td>
                         <td><button mat-icon-button matTooltip="More details" color="primary"

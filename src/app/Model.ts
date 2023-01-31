@@ -9,6 +9,7 @@ export interface ILogin {
 }
 
 export interface ISignup {
+    id: any;
     account: any;
     name: any;
     lname: any;
@@ -29,4 +30,23 @@ export interface Idistrict {
 export interface Icity {
     Id: any;
     Name: any;
+}
+
+export interface Idevice {
+    id: any;
+    macaddres: any;
+    name: any;
+    city: any;
+    cityname: any;
+    street: any;
+    building: any;
+    idleday: any;
+    rechargequantity: any;
+    cyclefrom: any;
+    cycleto: any;
+    quantityused: any;
+    userstatus: any;
+    adminstatus: any;
+
+
 }

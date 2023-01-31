@@ -5,7 +5,7 @@ import { AddDeviceDialogComponent } from '../add-device-dialog/add-device-dialog
 
 import { AuthService } from '../auth/auth.service';
 import { UserDataBindingService } from '../dataBinding/user-data-binding.service';
-import { ISignup } from '../Model';
+import { Idevice, ISignup } from '../Model';
 
 
 @Component({
@@ -16,11 +16,14 @@ import { ISignup } from '../Model';
 })
 export class HomeComponent implements OnInit {
   userId: any;
+  searchString: string = ''
   refresh_token: any;
   access_token: any;
   isDisable: boolean = false;
   hide = true;
   userInfos: ISignup[] = [];
+  devicesData: Idevice[] = [];
+  filteredDeviceData: Idevice[] = [];
 
 
   constructor(private auth: AuthService, public dialog: MatDialog, private _databind: UserDataBindingService) { }
@@ -45,7 +48,10 @@ export class HomeComponent implements OnInit {
     if (this.auth.isTokenExpired(this.auth.getTokenStorage("exp")) == true) {
       this.auth.refreshToken(this.userId, this.refresh_token);
     }
+
+
     this.fetchUSerInfo();
+    this.loadUserDevices();
 
   }
 
@@ -59,8 +65,10 @@ export class HomeComponent implements OnInit {
 
     const dialogRef = this.dialog.open(AddDeviceDialogComponent, {
 
-    });
+    }).afterClosed().subscribe(res => { this.loadUserDevices(); });
   }
+
+
   changePass() {
     var send = { "id": this.userId, "password": this.changePassValid?.value };
     this.auth.changePassword(send);
@@ -74,10 +82,32 @@ export class HomeComponent implements OnInit {
 
   }
 
+  loadUserDevices() {
+    this._databind.fetchAllDevices(this.userId).subscribe(data => this.devicesData = data);
+    this._databind.fetchAllDevices(this.userId).subscribe(data => this.filteredDeviceData = data)
 
-
-  filterBySearch($event: any) {
-    console.log($event.value);
   }
+
+
+  filterBySearch(event: any) {
+    this.searchString = event.target.value;
+
+    if (this.searchString === '') {
+
+      this.filteredDeviceData = this.performFilter('');
+    }
+    this.filteredDeviceData = this.performFilter(this.searchString);
+
+  }
+
+
+  performFilter(filterBy: string): Idevice[] {
+
+    filterBy = filterBy.toLocaleLowerCase();
+
+    return this.devicesData.filter((device: Idevice) => device.name.toLocaleLowerCase().includes(filterBy))
+
+  }
+
 
 }

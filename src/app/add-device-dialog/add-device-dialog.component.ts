@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserDataBindingService } from '../dataBinding/user-data-binding.service';
 import { Icity, Idistrict, Iprovince } from '../Model';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'pm-add-device-dialog',
@@ -19,12 +20,13 @@ export class AddDeviceDialogComponent implements OnInit {
   citySelectedid: any;
   districtData: Idistrict[] = [];
   citiesData: Icity[] = [];
+  userId: any;
 
 
-
-  constructor(public dialog: MatDialogRef<AddDeviceDialogComponent>, private _dataBind: UserDataBindingService) { }
+  constructor(public dialog: MatDialogRef<AddDeviceDialogComponent>, private _dataBind: UserDataBindingService, private _auth: AuthService) { }
 
   ngOnInit(): void {
+    this.userId = this._auth.getWebStorageData("user");
     this.cityDisable = true;
     this.districtDisable = true;
     this.getAllProvinces();
@@ -85,6 +87,14 @@ export class AddDeviceDialogComponent implements OnInit {
 
   }
   saveNewData() {
+    var formdata = {
+      "id": this.userId, "name": this.NameValidation?.value, "city": this.cityValidation?.value,
+      "street": this.streetValidation?.value, "building": this.buildingValidation?.value
+    }
+
+    this._dataBind.addNewDevice(formdata);
+    this.addForm.reset();
+    this.closeDialoge();
 
   }
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Icity, Idistrict, Iprovince, ISignup } from '../Model';
+import { Icity, Idevice, Idistrict, Iprovince, ISignup } from '../Model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +47,35 @@ export class UserDataBindingService {
 
 
   }
+
+  addNewDevice(senddata: any) {
+
+    this.http.post(this.apiUrl + "UserHome/AddNewDevice()", senddata).subscribe(data => {
+      if (data === 1) {
+
+        this._snackBar.open("New Device Has Been  Added Successfully", 'Ok', {
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+          duration: 1000,
+
+        })
+
+      }
+    });
+
+
+  }
+
+  fetchAllDevices(userid: any): Observable<Idevice[]> {
+    var send = { "id": userid }
+
+    return this.http.post<Idevice[]>(this.apiUrl + 'UserHome/FetchUserDevices()', send).pipe(tap(data => data), catchError(this.handleError));
+
+
+  }
+
+
+
 
 
   private handleError(err: HttpErrorResponse) {
