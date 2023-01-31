@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { DeviceDetailsRoutingModule } from './device-details-routing.module';
 import { DeviceDetailsComponent } from './device-details.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
-    DeviceDetailsComponent
+    DeviceDetailsComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
-    DeviceDetailsRoutingModule
+    DeviceDetailsRoutingModule,
+
+
   ]
 })
 export class DeviceDetailsModule { }

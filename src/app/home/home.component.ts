@@ -109,5 +109,9 @@ export class HomeComponent implements OnInit {
 
   }
 
+  deviceDetails(id: any) {
+    location.href = "User/DeviceDetails/" + id;
+
+  }
 
 }
