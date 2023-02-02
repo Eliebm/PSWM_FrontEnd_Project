@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from "../navbar/NavbarComponent";
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
