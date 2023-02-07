@@ -42,7 +42,7 @@ mat-icon {
 
     .main-container {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: nowrap;
 
     }
@@ -51,18 +51,18 @@ mat-icon {
 
     .row {
         width: 84%;
-        margin: 5% 50px;
+        margin: 5% 50px 2% 50px;
     }
 
     .left-section {
         width: 50%;
-        background-color: yellowgreen;
+
         margin-left: 3%
     }
 
     .right-section {
         width: 50%;
-        background-color: blue;
+
         margin-left: 5%
     }
 
@@ -90,9 +90,33 @@ mat-icon {
 
 
     .row {
+        display: flex;
+        flex-direction: row;
         width: 55%;
+        margin-top: 11%;
+        margin-bottom: 10px;
 
     }
+
+    .left-section {
+        width: 85%;
+
+        margin-left: 5%
+    }
+
+    .right-section {
+        width: 85%;
+
+        margin-left: 5%
+    }
+
+    .notifications {
+        position: absolute;
+        margin-left: 43%;
+        margin-top: 2.5em;
+
+    }
+
 
 
 }
@@ -108,5 +132,32 @@ mat-icon {
 
     }
 
+    .row {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 11%;
+        margin-bottom: 10px;
+
+    }
+
+    .left-section {
+        width: 87%;
+
+        margin-left: 10%
+    }
+
+    .right-section {
+        width: 87%;
+
+        margin-left: 10%
+    }
+
+    .notifications {
+        position: absolute;
+        margin-left: 40%;
+        margin-top: 0.4em;
+
+    }
 
 }

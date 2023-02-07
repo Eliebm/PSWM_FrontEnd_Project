@@ -1,0 +1,12 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+highcharts-chart {
+    width: 80%;
+    margin-left: 10%;
+    display: block;
+    margin-bottom: 50px;
+}

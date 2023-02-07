@@ -7,7 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./device-details.component.css']
 })
 export class DeviceDetailsComponent implements OnInit {
-
+  deviceid: string = "12345";
   constructor() { }
   statusForm = new FormGroup({
     statusSlide: new FormControl(null, [Validators.required])

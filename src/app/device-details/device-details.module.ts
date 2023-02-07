@@ -13,13 +13,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatBadgeModule } from '@angular/material/badge';
+import { ChartsComponent } from '../chart/charts/charts.component';
 
 
 
 @NgModule({
   declarations: [
     DeviceDetailsComponent,
-    NavbardetailsComponent
+    NavbardetailsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     FormsModule,
     MatFormFieldModule,
     MatSlideToggleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    ChartsComponent
 
   ]
 })
