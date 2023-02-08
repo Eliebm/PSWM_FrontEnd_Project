@@ -9,7 +9,7 @@
         <mat-icon color="danger" matBadge="15" matBadgeColor="primary" matTooltip="Faults" matTooltipPosition="right"
             style="color:red">notifications</mat-icon>
     </div>
-    <div class=" row">
+    <div class=" row" *ngFor="let deviceD of deviceDetails">
         <div class="left-section">
             <mat-card>
                 <mat-card-header>
@@ -20,15 +20,20 @@
                 <mat-card-content>
                     <ul>
                         <li>
-                            <h3>Name : </h3>
+                            <h3>Name : {{deviceD.name}} </h3>
                         </li>
                         <li>
-                            <h3>Customer Name: </h3>
+                            <h3>Customer Name: {{deviceD.macaddres}} </h3>
                         </li>
                         <li>
-                            <h3>Idle Days : </h3>
+                            <h3>Idle Days : {{deviceD.idleday}} </h3>
                         </li>
-
+                        <li>
+                            <h3>Cycle From : {{deviceD.cyclefrom}}</h3>
+                        </li>
+                        <li>
+                            <h3>Expiry Date : {{deviceD.cycleto}}</h3>
+                        </li>
                     </ul>
 
                 </mat-card-content>
@@ -46,17 +51,24 @@
                 <mat-card-content>
                     <ul>
                         <li>
-                            <h3>Status : </h3>
+                            <h3>Status : {{deviceD.adminstatus}}</h3>
                         </li>
                         <li>
-                            <h3>Expiry Date : </h3>
+                            <h3>Total Amount : {{deviceD.rechargequantity}} </h3>
+                        </li>
+                        <li>
+                            <h3>Used Amount : {{deviceD.quantityused}}</h3>
+                        </li>
+                        <li>
+                            <h3>Remaining : {{deviceD.remainingquantity}}</h3>
                         </li>
                         <li>
 
                             <form class="row-form" [formGroup]="statusForm">
-                                <h3>Turn On/Off</h3>
-                                <mat-slide-toggle color="primary" matTooltip="ON/OFF" formControlName="statusSlide"
-                                    (click)="turnOn()">
+                                <h3>Device Status</h3>
+                                <mat-slide-toggle color="primary"
+                                    [checked]="deviceD.userstatus === 'true' ? true : false" matTooltip="ON/OFF"
+                                    (change)="turnOn($event)">
 
                                 </mat-slide-toggle>
                             </form>

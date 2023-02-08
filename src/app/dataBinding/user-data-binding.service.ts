@@ -74,7 +74,28 @@ export class UserDataBindingService {
 
   }
 
+  fetchDeviceDetails(deviceid: any): Observable<Idevice[]> {
+    var send = { "id": deviceid }
+    return this.http.post<Idevice[]>(this.apiUrl + 'UserHome/FetchDeviceDetails()', send).pipe(tap(data => data), catchError(this.handleError));
 
+  }
+
+  turnDeviceOnOff(deviceid: any, userstatus: any) {
+    var send = { "id": deviceid, "userstatus": userstatus };
+    this.http.post(this.apiUrl + "userHome/TurndeviceOnOff()", send).subscribe(data => {
+      if (data === "1") {
+        this._snackBar.open("Device status has changed", 'Ok', {
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+
+        })
+
+      }
+
+    });
+
+
+  }
 
 
 

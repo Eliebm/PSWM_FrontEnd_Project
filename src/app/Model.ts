@@ -45,6 +45,7 @@ export interface Idevice {
     cyclefrom: any;
     cycleto: any;
     quantityused: any;
+    remainingquantity: any;
     userstatus: any;
     adminstatus: any;
 
