@@ -51,3 +51,21 @@ export interface Idevice {
 
 
 }
+
+export interface Iwater {
+
+    data: any;
+}
+export interface Itubidity {
+
+    data: any;
+
+}
+export interface Icategory {
+    name: any;
+}
+export interface IyearsChart {
+    water: Iwater[];
+    turbidity: Itubidity[];
+    category: Icategory[];
+}

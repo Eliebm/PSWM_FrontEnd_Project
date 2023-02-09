@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { UserDataBindingService } from 'src/app/dataBinding/user-data-binding.service';
+
 
 @Component({
   selector: 'pm-charts',
@@ -12,43 +14,107 @@ import { HighchartsChartModule } from 'highcharts-angular';
 export class ChartsComponent implements OnInit {
   @Input() deviceid: string | undefined;
 
-
-
-  binddata = [{
-    name: 'Installation & Developers',
-    data: [43934, 48656, 65165, 81827, 112143, 142383,
-      171533, 165174, 155157, 161454, 154610]
-  }, {
-    name: 'Manufacturing',
-    data: [24916, 37941, 29742, 29851, 32490, 30282,
-      38121, 36885, 33726, 34243, 31050]
-  }];
-
-
   Highcharts = Highcharts;
-  linechart: any = {
-    series: this.binddata,
-    chart: {
-      type: 'spline',
-    },
-    title: {
-      text: 'Year Consumption',
-    }, xAxis: {
-      categories: [],
-      accessibility: {
-        description: 'Months of the year'
-      }
-    }, yAxis: {
-      title: {
-        text: 'litre'
-      },
 
-    }
-  };
-  constructor() { }
+  linechart: any;
+  binddata: any;
+
+
+
+
+
+
+  constructor(private _databind: UserDataBindingService) { }
 
   ngOnInit(): void {
     console.log(this.deviceid);
+
+    this.yearchart();
+  }
+
+
+  yearchart(): void {
+    this._databind.firstChart(this.deviceid).subscribe(data => {
+      data
+
+      this.linechart = {
+        chart: {
+          zoomType: 'xy'
+        },
+        title: {
+          text: 'Average yearly water amount and turbidity ',
+          align: 'left'
+        },
+        plotOptions: {},
+        xAxis: [{
+          categories: data[0].category,
+          crosshair: true
+        }],
+        yAxis: [{ // Primary yAxis
+          labels: {
+            format: '{value} NTU',
+
+          },
+          title: {
+            text: 'Turbidity',
+
+          }
+        }, { // Secondary yAxis
+          title: {
+            text: 'Water Amount',
+
+          },
+          labels: {
+            format: '{value} L',
+
+          },
+          opposite: true
+        }],
+        tooltip: {
+          shared: true
+        },
+        legend: {
+          align: 'center',
+
+          verticalAlign: 'bottom',
+
+          floating: false,
+
+        },
+        series: [{
+          name: 'Water Flow',
+          type: 'column',
+          colorByPoint: true,
+          yAxis: 1,
+          data: data[0].water,
+          tooltip: {
+            valueSuffix: ' L'
+          }
+
+        }, {
+          name: 'Turbidity',
+          type: 'spline',
+          colorByPoint: true,
+
+          data: data[0].turbidity,
+          tooltip: {
+            valueSuffix: ' Nephelometric Turbidity Unit (NTU)'
+          }
+        }],
+        responsive: {
+          rules: [{
+            chartOptions: {
+              legend: {
+                enabled: true
+              }
+            },
+            condition: {
+              maxWidth: 400
+            }
+          }]
+        }
+      }
+    });
   }
 
 }

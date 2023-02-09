@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Icity, Idevice, Idistrict, Iprovince, ISignup } from '../Model';
+import { Icity, Idevice, Idistrict, Iprovince, ISignup, IyearsChart } from '../Model';
 
 @Injectable({
   providedIn: 'root'
@@ -97,6 +97,12 @@ export class UserDataBindingService {
 
   }
 
+  firstChart(deviceid: any): Observable<IyearsChart[]> {
+    var send = { "id": deviceid };
+    return this.http.post<IyearsChart[]>(this.apiUrl + 'UserHome/FirstChart()', send).pipe(tap(data => data), catchError(this.handleError));
+
+
+  }
 
 
   private handleError(err: HttpErrorResponse) {
