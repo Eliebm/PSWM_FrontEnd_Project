@@ -104,6 +104,24 @@ export class UserDataBindingService {
 
   }
 
+  yearChart(deviceid: any, yearid: any): Observable<IyearsChart[]> {
+    var send = { "year": yearid, "deviceid": deviceid };
+    return this.http.post<IyearsChart[]>(this.apiUrl + 'UserHome/ChartByYear()', send).pipe(tap(data => data), catchError(this.handleError));
+
+  }
+  percentageYearChart(deviceid: any, yearid: any): Observable<IyearsChart[]> {
+    var send = { "year": yearid, "deviceid": deviceid };
+    return this.http.post<IyearsChart[]>(this.apiUrl + 'UserHome/PercentageChartByYear()', send).pipe(tap(data => data), catchError(this.handleError));
+
+  }
+
+  averageMonthTurbidityChart(deviceid: any, yearid: any): Observable<IyearsChart[]> {
+    var send = { "year": yearid, "deviceid": deviceid };
+    return this.http.post<IyearsChart[]>(this.apiUrl + 'UserHome/TurbidityLineChart()', send).pipe(tap(data => data), catchError(this.handleError));
+  }
+
+
+
 
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';

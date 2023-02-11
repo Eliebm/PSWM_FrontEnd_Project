@@ -42,10 +42,15 @@ export class ChartsComponent implements OnInit {
           zoomType: 'xy'
         },
         title: {
-          text: 'Average yearly water amount and turbidity ',
-          align: 'left'
+          text: 'Yearly Average  Water Amount And Turbidity ',
+          align: 'center'
         },
-        plotOptions: {},
+        plotOptions: {
+          column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+          }
+        },
         xAxis: [{
           categories: data[0].category,
           crosshair: true

@@ -1,0 +1,118 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+hr {
+    background-color: black;
+    height: 5px;
+}
+
+.form-year label,
+input {
+    margin-right: 5px;
+}
+
+form {
+    margin-left: 10%;
+    margin-bottom: 7px;
+}
+
+
+label {
+    font-size: large;
+}
+
+
+@media screen and (min-width:1024px) {
+    form {
+        margin-left: 40%;
+        margin-bottom: 15px;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        max-width: 95%;
+    }
+
+    .chart {
+        width: 55%;
+        margin-left: 10.5%;
+        display: block;
+        margin-bottom: 10px;
+
+    }
+
+    .piechart {
+        width: 29.8%;
+        margin-left: 1%;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .turbiditychart {
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+
+@media screen and (min-width:767px) and (max-width:1020px) {
+    .row {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .chart {
+        width: 80%;
+        margin-left: 10%;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .piechart {
+        width: 80%;
+        margin-left: 10%;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .turbiditychart {
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+
+@media screen and (max-width:750px) {
+    .row {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .chart {
+        width: 80%;
+        margin-left: 10%;
+        display: block;
+        margin-bottom: 10px;
+
+    }
+
+    .piechart {
+        width: 80%;
+        margin-left: 10%;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .turbiditychart {
+        width: 80%;
+        margin-left: 10%;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+}

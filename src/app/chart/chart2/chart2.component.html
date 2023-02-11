@@ -1,0 +1,19 @@
+<div class="column">
+    <form class="form-year" [formGroup]="selectyearForm">
+        <label>Select year </label>
+        <input type="number" formControlName="selectedyear">
+        <button mat-mini-fab color="primary" aria-label="Select year " (click)="changechart()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </form>
+    <div class="row">
+        <highcharts-chart class="chart" [Highcharts]="Highcharts" [options]="chart">
+        </highcharts-chart>
+        <highcharts-chart class="piechart" [Highcharts]="Highcharts" [options]="piechart">
+        </highcharts-chart>
+    </div>
+    <highcharts-chart class="turbiditychart" [Highcharts]="Highcharts" [options]="turbiditychart">
+    </highcharts-chart>
+    <hr class="rounded">
+
+</div>

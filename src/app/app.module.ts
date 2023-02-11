@@ -13,9 +13,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
+
 
 
   ],
@@ -27,7 +30,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+
+
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi: true }],

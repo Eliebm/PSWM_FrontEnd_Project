@@ -19,6 +19,8 @@ export class DeviceDetailsComponent implements OnInit {
   access_token: any;
   deviceid: any;
   deviceDetails: Idevice[] = [];
+  chart2Date: any;
+  datepicker: any;
 
 
   constructor(private auth: AuthService, private _route: ActivatedRoute, private _databind: UserDataBindingService) { }

@@ -8,5 +8,10 @@ highcharts-chart {
     width: 80%;
     margin-left: 10%;
     display: block;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
+}
+
+hr {
+    background-color: black;
+    height: 5px;
 }
