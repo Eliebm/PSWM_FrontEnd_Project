@@ -120,6 +120,13 @@ export class UserDataBindingService {
     return this.http.post<IyearsChart[]>(this.apiUrl + 'UserHome/TurbidityLineChart()', send).pipe(tap(data => data), catchError(this.handleError));
   }
 
+  dailyWaterTurbidityChart(deviceid: any, monthid: any): Observable<IyearsChart[]> {
+    var n = monthid.lastIndexOf('-');
+    var result = monthid.substring(n + 1);
+    var resultyear = monthid.substring(0, n);
+    var send = { "deviceid": deviceid, "year": resultyear, "month": result };
+    return this.http.post<IyearsChart[]>(this.apiUrl + 'UserHome/MonthWaterTurbidityChart()', send).pipe(tap(data => data), catchError(this.handleError));
+  }
 
 
 

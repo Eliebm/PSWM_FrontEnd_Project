@@ -15,5 +15,14 @@
     <highcharts-chart class="turbiditychart" [Highcharts]="Highcharts" [options]="turbiditychart">
     </highcharts-chart>
     <hr class="rounded">
-
+    <form class="form-year" [formGroup]="selectmonthForm">
+        <label>Select month</label>
+        <input type="month" formControlName="selectedMonth">
+        <button mat-mini-fab color="primary" aria-label="Select year " (click)="changeMonthChart()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </form>
+    <highcharts-chart class="turbiditychart" [Highcharts]="Highcharts" [options]="dailychart">
+    </highcharts-chart>
+    <hr class="rounded">
 </div>

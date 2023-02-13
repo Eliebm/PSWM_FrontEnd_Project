@@ -26,7 +26,9 @@ export class Chart2Component implements OnInit {
   chart: any;
   piechart: any;
   turbiditychart: any;
+  dailychart: any;
   currentyear: any;
+  currentMonth: any;
   yearselection: any[] = [];
 
 
@@ -37,9 +39,10 @@ export class Chart2Component implements OnInit {
   ngOnInit(): void {
     this.currentyear = new Date().getFullYear();
 
-    this.columnChart(2023);
-    this.pieChart(2023);
-    this.turbidityChart(2023);
+    this.columnChart(this.currentyear);
+    this.pieChart(this.currentyear);
+    this.turbidityChart(this.currentyear);
+    this.dailyChart(this.selectedMonthValid?.value);
 
 
 
@@ -48,17 +51,31 @@ export class Chart2Component implements OnInit {
   selectyearForm = new FormGroup({
     selectedyear: new FormControl(2023, [Validators.required])
   });
+  selectmonthForm = new FormGroup({
+    selectedMonth: new FormControl('2023-02', [Validators.required])
+  });
 
   get selectedyearValid() {
     return this.selectyearForm.get('selectedyear');
   }
+  get selectedMonthValid() {
+    return this.selectmonthForm.get('selectedMonth');
+  }
+
 
   changechart() {
+    this.currentyear = this.selectedyearValid?.value;
     this.columnChart(this.selectedyearValid?.value);
     this.pieChart(this.selectedyearValid?.value);
     this.turbidityChart(this.selectedyearValid?.value);
+
   }
 
+  changeMonthChart() {
+
+    this.dailyChart(this.selectedMonthValid?.value);
+
+  }
 
   columnChart(year: any): void {
 
@@ -196,4 +213,96 @@ export class Chart2Component implements OnInit {
       }
     });
   }
+
+  dailyChart(month: any): void {
+    this._databind.dailyWaterTurbidityChart(this.deviceid, month).subscribe(data => {
+      data
+
+      this.dailychart = {
+        chart: {
+          zoomType: 'xy'
+        },
+        title: {
+          text: 'Daily Average Water Amount And Turbidity ',
+          align: 'center'
+        },
+        plotOptions: {
+          column: {
+            pointPadding: 0.1,
+            borderWidth: 0
+          }
+        },
+        xAxis: [{
+          categories: data[0].category,
+          crosshair: true
+        }],
+        yAxis: [{ // Primary yAxis
+          labels: {
+            format: '{value} NTU',
+
+          },
+          title: {
+            text: 'Turbidity',
+
+          }
+        }, { // Secondary yAxis
+          title: {
+            text: 'Water Amount',
+
+          },
+          labels: {
+            format: '{value} L',
+
+          },
+          opposite: true
+        }],
+        tooltip: {
+          shared: true
+        },
+        legend: {
+          align: 'center',
+
+          verticalAlign: 'bottom',
+
+          floating: false,
+
+        },
+        series: [{
+          name: 'Water Flow',
+          type: 'column',
+          colorByPoint: true,
+          yAxis: 1,
+          data: data[0].water,
+          tooltip: {
+            valueSuffix: ' L'
+          }
+
+        }, {
+          name: 'Turbidity',
+          type: 'spline',
+          colorByPoint: true,
+
+          data: data[0].turbidity,
+          tooltip: {
+            valueSuffix: ' Nephelometric Turbidity Unit (NTU)'
+          }
+        }],
+        responsive: {
+          rules: [{
+            chartOptions: {
+              legend: {
+                enabled: true
+              }
+            },
+            condition: {
+              maxWidth: 400
+            }
+          }]
+        }
+      }
+    });
+  }
+
+
+
 }
