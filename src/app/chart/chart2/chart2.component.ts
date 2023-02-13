@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,7 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import * as Highcharts from 'highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { UserDataBindingService } from 'src/app/dataBinding/user-data-binding.service';
-import { IyearsChart } from 'src/app/Model';
+import { Idaily, IyearsChart } from 'src/app/Model';
 
 @Component({
   selector: 'pm-chart2',
@@ -16,7 +17,7 @@ import { IyearsChart } from 'src/app/Model';
   styleUrls: ['./chart2.component.css'],
   standalone: true,
   imports: [HighchartsChartModule, MatIconModule, MatTooltipModule,
-    ReactiveFormsModule, MatButtonModule, FormsModule, MatFormFieldModule, MatSelectModule]
+    ReactiveFormsModule, MatButtonModule, FormsModule, MatFormFieldModule, MatSelectModule, CommonModule]
 })
 export class Chart2Component implements OnInit {
   @Input() deviceid: string | undefined;
@@ -27,22 +28,33 @@ export class Chart2Component implements OnInit {
   piechart: any;
   turbiditychart: any;
   dailychart: any;
-  currentyear: any;
-  currentMonth: any;
+  currentyear: any = new Date().getFullYear();
+  currentMonth: any = 0 + new Date().getMonth() + 1;
+  currentDay: any = new Date().getDate();
+  month: any = this._databind.getmonth();
+  day: any = this.month + '-' + this.currentDay;
   yearselection: any[] = [];
+  waterDailyData: Idaily[] = [];
+  TurbidityDailyData: Idaily[] = [];
 
 
-  constructor(private _databind: UserDataBindingService) { }
+
+  constructor(private _databind: UserDataBindingService) {
+
+
+  }
 
 
 
   ngOnInit(): void {
-    this.currentyear = new Date().getFullYear();
+
 
     this.columnChart(this.currentyear);
     this.pieChart(this.currentyear);
     this.turbidityChart(this.currentyear);
     this.dailyChart(this.selectedMonthValid?.value);
+    this.changeday();
+
 
 
 
@@ -52,14 +64,21 @@ export class Chart2Component implements OnInit {
     selectedyear: new FormControl(2023, [Validators.required])
   });
   selectmonthForm = new FormGroup({
-    selectedMonth: new FormControl('2023-02', [Validators.required])
+    selectedMonth: new FormControl(this.month, [Validators.required])
   });
+  selectdayForm = new FormGroup({
+    selectedDay: new FormControl(this.day, [Validators.required])
+  });
+
 
   get selectedyearValid() {
     return this.selectyearForm.get('selectedyear');
   }
   get selectedMonthValid() {
     return this.selectmonthForm.get('selectedMonth');
+  }
+  get selectedDayValid() {
+    return this.selectdayForm.get('selectedDay');
   }
 
 
@@ -74,6 +93,13 @@ export class Chart2Component implements OnInit {
   changeMonthChart() {
 
     this.dailyChart(this.selectedMonthValid?.value);
+
+  }
+
+  changeday() {
+
+    this._databind.dailyWaterTable(this.deviceid, this.selectedDayValid?.value).subscribe(data => this.waterDailyData = data);
+    this._databind.dailyTurbidityTable(this.deviceid, this.selectedDayValid?.value).subscribe(data => this.TurbidityDailyData = data);
 
   }
 

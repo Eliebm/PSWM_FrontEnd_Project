@@ -16,13 +16,56 @@
     </highcharts-chart>
     <hr class="rounded">
     <form class="form-year" [formGroup]="selectmonthForm">
-        <label>Select month</label>
-        <input type="month" formControlName="selectedMonth">
+        <label>Select Month</label>
+        <input type="month" formControlName="selectedMonth" [placeholder]="month">
         <button mat-mini-fab color="primary" aria-label="Select year " (click)="changeMonthChart()">
             <mat-icon>refresh</mat-icon>
         </button>
     </form>
     <highcharts-chart class="turbiditychart" [Highcharts]="Highcharts" [options]="dailychart">
     </highcharts-chart>
+    <hr class="rounded">
+    <form class="form-year" [formGroup]="selectdayForm">
+        <label>Select Day</label>
+        <input type="date" formControlName="selectedDay">
+        <button mat-mini-fab color="primary" aria-label="Select day " (click)="changeday()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </form>
+    <div class="row" *ngIf="waterDailyData?.length">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th>Time</th>
+                    <th>Water Amount (L)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let water of waterDailyData">
+                    <td>{{water.Time}}</td>
+                    <td>{{water.watervalue}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead class="table-success">
+                <tr>
+                    <th>Time</th>
+                    <th>Turbidity (NTU)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let turbid of TurbidityDailyData">
+                    <td>{{turbid.Time}}</td>
+                    <td>{{turbid.turbidityvalue}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <hr class="rounded">
 </div>

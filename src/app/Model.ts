@@ -69,3 +69,8 @@ export interface IyearsChart {
     turbidity: Itubidity[];
     category: Icategory[];
 }
+export interface Idaily {
+    Time: any;
+    watervalue: any;
+    turbidityvalue: any;
+}

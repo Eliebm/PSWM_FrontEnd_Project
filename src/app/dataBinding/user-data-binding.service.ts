@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Icity, Idevice, Idistrict, Iprovince, ISignup, IyearsChart } from '../Model';
+import { Icity, Idaily, Idevice, Idistrict, Iprovince, ISignup, IyearsChart } from '../Model';
 
 @Injectable({
   providedIn: 'root'
@@ -128,6 +128,29 @@ export class UserDataBindingService {
     return this.http.post<IyearsChart[]>(this.apiUrl + 'UserHome/MonthWaterTurbidityChart()', send).pipe(tap(data => data), catchError(this.handleError));
   }
 
+  dailyWaterTable(deviceid: any, year: any): Observable<Idaily[]> {
+    var send = { "deviceid": deviceid, "year": year };
+    return this.http.post<Idaily[]>(this.apiUrl + 'UserHome/DailyWaterData()', send).pipe(tap(data => data), catchError(this.handleError));
+
+
+  }
+  dailyTurbidityTable(deviceid: any, year: any): Observable<Idaily[]> {
+    var send = { "deviceid": deviceid, "year": year };
+    return this.http.post<Idaily[]>(this.apiUrl + 'UserHome/DailyTurbidityData()', send).pipe(tap(data => data), catchError(this.handleError));
+
+
+  }
+
+  getmonth(): string {
+    var currentyear = new Date().getFullYear();
+    var currentmonth = new Date().getMonth() + 1;
+    if (currentmonth > 10) {
+      var month = currentyear + '-' + currentmonth;
+    } else {
+      month = currentyear + '-0' + currentmonth
+    }
+    return month;
+  }
 
 
   private handleError(err: HttpErrorResponse) {
