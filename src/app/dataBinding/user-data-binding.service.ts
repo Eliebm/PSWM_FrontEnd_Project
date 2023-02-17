@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Icity, Idaily, Idevice, Idistrict, Iprovince, ISignup, IyearsChart } from '../Model';
+import { Icity, Idaily, Idevice, Idistrict, Inotification, Iprovince, ISignup, IyearsChart } from '../Model';
 
 @Injectable({
   providedIn: 'root'
@@ -87,6 +87,7 @@ export class UserDataBindingService {
         this._snackBar.open("Device status has changed", 'Ok', {
           horizontalPosition: "center",
           verticalPosition: "bottom",
+          duration: 4000,
 
         })
 
@@ -151,6 +152,17 @@ export class UserDataBindingService {
     }
     return month;
   }
+
+  fetchNotificationNumber(deviceid: any): Observable<Inotification[]> {
+    var send = { "deviceid": deviceid, "notiftype": "notif" };
+    return this.http.post<Inotification[]>(this.apiUrl + 'UserHome/NotificationCount()', send).pipe(tap(data => data), catchError(this.handleError));
+  }
+  fetchFaultNumber(deviceid: any): Observable<Inotification[]> {
+    var send = { "deviceid": deviceid, "notiftype": "fault" };
+    return this.http.post<Inotification[]>(this.apiUrl + 'UserHome/NotificationCount()', send).pipe(tap(data => data), catchError(this.handleError));
+  }
+
+
 
 
   private handleError(err: HttpErrorResponse) {

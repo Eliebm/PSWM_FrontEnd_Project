@@ -21,6 +21,11 @@ export class DeviceDetailsComponent implements OnInit {
   deviceDetails: Idevice[] = [];
   chart2Date: any;
   datepicker: any;
+  faultnumber: any;
+  notinumber: any;
+  hidefault: boolean = false;
+  hidenotif: boolean = false;
+
 
 
   constructor(private auth: AuthService, private _route: ActivatedRoute, private _databind: UserDataBindingService) { }
@@ -50,6 +55,8 @@ export class DeviceDetailsComponent implements OnInit {
     }
 
     this.fetchdevicedetails();
+    this.notiFaultCount();
+
 
   }
 
@@ -69,15 +76,33 @@ export class DeviceDetailsComponent implements OnInit {
       this._databind.turnDeviceOnOff(this.deviceid, "true");
     }
     else { this._databind.turnDeviceOnOff(this.deviceid, "false"); }
-
+    this.fetchdevicedetails();
 
 
   }
 
 
-  message() {
-    alert("mesage");
+  showNotification() {
+    location.href = "Notification/:" + this.deviceid + "/:notification"
   }
+  showFaults() {
+    location.href = "Notification/:" + this.deviceid + "/:faults"
+  }
+
+  notiFaultCount() {
+    this._databind.fetchNotificationNumber(this.deviceid).subscribe(data => {
+      this.notinumber = data[0].id
+      if (data[0].id === 0) {
+        this.hidenotif = true;
+      }
+    });
+    this._databind.fetchFaultNumber(this.deviceid).subscribe(data => {
+      this.faultnumber = data[0].id
+      if (data[0].id === 0) {
+        this.hidefault = true;
+      }
+    });
+
+  }
+
 }
-
-

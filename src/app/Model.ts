@@ -74,3 +74,12 @@ export interface Idaily {
     watervalue: any;
     turbidityvalue: any;
 }
+
+export interface Inotification {
+    id: any;
+    deviceid: any;
+    notiftype: any;
+    iread: any;
+    date: any;
+
+}

@@ -3,27 +3,31 @@
 <div class="main-container">
     <div class="notifications">
 
-        <mat-icon matBadge="8" matBadgeColor="accent" matTooltip="Message" matTooltipPosition="left" style="color:blue"
-            (click)="message()">message</mat-icon>
+        <mat-icon [matBadge]="notinumber" [matBadgeHidden]="hidenotif" matBadgeColor="accent" matTooltip="Message"
+            matTooltipPosition="left" style="color:blue" (click)="showNotification()">message</mat-icon>
 
-        <mat-icon color="danger" matBadge="15" matBadgeColor="primary" matTooltip="Faults" matTooltipPosition="right"
-            style="color:red">notifications</mat-icon>
+        <mat-icon color="danger" [matBadge]="faultnumber" [matBadgeHidden]="hidefault" matBadgeColor="primary"
+            matTooltip="Faults" matTooltipPosition="right" style="color:red"
+            (click)="showFaults()">notifications</mat-icon>
     </div>
     <div class=" row" *ngFor="let deviceD of deviceDetails">
         <div class="left-section">
             <mat-card>
                 <mat-card-header>
                     <mat-card-title-group>
-                        <mat-card-title>General Info</mat-card-title>
+                        <mat-card-title>General Info <label style="color:blue;">
+                                {{deviceid}} </label></mat-card-title>
                     </mat-card-title-group>
                 </mat-card-header>
                 <mat-card-content>
                     <ul>
                         <li>
-                            <h3>Name : {{deviceD.name}} </h3>
+                            <h3>
+                                Name : {{deviceD.name}}
+                            </h3>
                         </li>
                         <li>
-                            <h3>Customer Name: {{deviceD.macaddres}} </h3>
+                            <h3>Customer : {{deviceD.macaddres}} </h3>
                         </li>
                         <li>
                             <h3>Idle Days : {{deviceD.idleday}} </h3>
