@@ -11,7 +11,7 @@
                         <a class="nav-link" href="/User/Home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Recharge</a>
+                        <a class="nav-link" href="/Recharge">Recharge</a>
                     </li>
 
 
@@ -24,10 +24,15 @@
         </div>
     </nav>
 
+    <div class="nodata" *ngIf="!messagesData.length">
+        <mat-icon class="icon-display">warning</mat-icon>
+        <h2>No Messages !
 
+        </h2>
+    </div>
 
-    <div class="table-responsive">
-        <table class="table table-dark table-striped table-responsive">
+    <div class="table-responsive" *ngIf="messagesData.length">
+        <table class="table table-dark table-striped">
             <thead>
                 <tr>
 

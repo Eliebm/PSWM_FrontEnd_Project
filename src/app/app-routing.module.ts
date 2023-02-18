@@ -8,7 +8,8 @@ const routes: Routes = [{ path: '', redirectTo: 'Login', pathMatch: 'full' },
 { path: 'User/Signup', loadChildren: () => import('./signup/signup.module').then(m => m.SignupModule) },
 { path: 'User/DeviceDetails/:deviceid', loadChildren: () => import('./device-details/device-details.module').then(m => m.DeviceDetailsModule) },
 { path: 'Admin/DeviceDetails/:deviceid', loadChildren: () => import('./device-details/device-details.module').then(m => m.DeviceDetailsModule) },
-{ path: 'Notification/:device/:type', loadChildren: () => import('./notification/notification.module').then(m => m.NotificationModule) }];
+{ path: 'Notification/:device/:type', loadChildren: () => import('./notification/notification.module').then(m => m.NotificationModule) },
+{ path: 'Recharge', loadChildren: () => import('./recharge/recharge.module').then(m => m.RechargeModule) }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
