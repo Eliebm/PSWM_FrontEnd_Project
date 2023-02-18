@@ -83,10 +83,10 @@ export class DeviceDetailsComponent implements OnInit {
 
 
   showNotification() {
-    location.href = "Notification/:" + this.deviceid + "/:notification"
+    location.href = "Notification/" + this.deviceid + "/" + "notification"
   }
   showFaults() {
-    location.href = "Notification/:" + this.deviceid + "/:faults"
+    location.href = "Notification/" + this.deviceid + "/" + "fault"
   }
 
   notiFaultCount() {

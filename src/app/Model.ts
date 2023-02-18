@@ -78,8 +78,9 @@ export interface Idaily {
 export interface Inotification {
     id: any;
     deviceid: any;
+    text: any;
     notiftype: any;
-    iread: any;
+    isread: any;
     date: any;
 
 }

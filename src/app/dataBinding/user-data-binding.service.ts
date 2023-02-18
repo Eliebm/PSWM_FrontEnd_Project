@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarRef, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { catchError, delay, Observable, Subscription, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Icity, Idaily, Idevice, Idistrict, Inotification, Iprovince, ISignup, IyearsChart } from '../Model';
 
@@ -160,6 +160,37 @@ export class UserDataBindingService {
   fetchFaultNumber(deviceid: any): Observable<Inotification[]> {
     var send = { "deviceid": deviceid, "notiftype": "fault" };
     return this.http.post<Inotification[]>(this.apiUrl + 'UserHome/NotificationCount()', send).pipe(tap(data => data), catchError(this.handleError));
+  }
+
+
+  loadMessages(deviceid: any, type: any): Observable<Inotification[]> {
+    if (type === "notification") {
+      type = "notif";
+    }
+    var send = { "deviceid": deviceid, "notiftype": type };
+    return this.http.post<Inotification[]>(this.apiUrl + 'UserHome/FetchMessages()', send).pipe(tap(data => data), catchError(this.handleError));
+  }
+
+  DeleteMessages(msgid: any): any {
+    var senddata = { "id": msgid };
+    this.http.post(this.apiUrl + "UserHome/DeleteMessages()", senddata).subscribe(data => {
+
+      if (data === "1") {
+        let snackBarRef = this._snackBar.open("Message Has Been Deleted Successfully", 'Ok', {
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+          duration: 5000,
+
+        })
+
+      }
+
+
+
+    });
+
+
+
   }
 
 
