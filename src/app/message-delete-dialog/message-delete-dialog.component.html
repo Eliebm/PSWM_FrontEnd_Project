@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Delete Message</h1>
+<div mat-dialog-content>
+    Would you like to delete Message?
+</div>
+<div class="action" mat-dialog-actions>
+    <button mat-button mat-dialog-close style="color: red;">NO</button>
+    <button mat-button mat-dialog-close cdkFocusInitial style="color: white;background-color: green;"
+        (click)="confirm()">YES</button>
+</div>

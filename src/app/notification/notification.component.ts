@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { delay } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../auth/auth.service';
 import { UserDataBindingService } from '../dataBinding/user-data-binding.service';
 import { Inotification } from '../Model';
+import { MessageDeleteDialogComponent } from '../message-delete-dialog/message-delete-dialog.component';
 
 @Component({
   selector: 'pm-notification',
@@ -18,7 +19,7 @@ export class NotificationComponent implements OnInit {
   access_token: any;
   messagesData: Inotification[] = [];
 
-  constructor(private auth: AuthService, private _route: ActivatedRoute, private _databind: UserDataBindingService) { }
+  constructor(private auth: AuthService, private _route: ActivatedRoute, private _databind: UserDataBindingService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.deviceid = this._route.snapshot.paramMap.get('device');
@@ -47,8 +48,12 @@ export class NotificationComponent implements OnInit {
   }
   deletemessage(id: any): void {
 
-    this._databind.DeleteMessages(id);
-    this.loadMessages();
+    const dialogRef = this.dialog.open(MessageDeleteDialogComponent, {
+      data: id,
+    }).afterClosed().subscribe(res => { this.loadMessages(); });
+
+
+
 
   }
 
