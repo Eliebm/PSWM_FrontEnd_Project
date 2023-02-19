@@ -13,7 +13,26 @@
     min-height: 100%;
 }
 
-.stepper-form {
-    padding-top: 15%;
-    padding-left: 5%;
+@media screen and (min-width:1024px) {
+    .stepper-form {
+        padding-top: 10%;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+@media screen and (min-width:767px) and (max-width:1020px) {
+    .stepper-form {
+        padding-top: 15%;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+@media screen and (max-width:750px) {
+    .stepper-form {
+        padding-top: 25%;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
 }

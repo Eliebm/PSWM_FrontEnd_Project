@@ -24,27 +24,37 @@
         </div>
     </nav>
     <div class="stepper-form">
-        <mat-stepper headerPosition="top" #stepper>
-            <mat-step [stepControl]="firstFormGroup">
+        <mat-vertical-stepper linear="true" headerPosition="top" #stepper>
+            <mat-step [stepControl]="firstFormGroup" errorMessage="Device is required">
                 <form [formGroup]="firstFormGroup">
-                    <ng-template matStepLabel>Fill out your name</ng-template>
+                    <ng-template matStepLabel>Select Device</ng-template>
                     <mat-form-field>
-                        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                    </mat-form-field>
+                        <mat-select formControlName="firstCtrl" [(value)]="deviceSelectedid">
+
+                            <mat-option *ngFor="let device of fetchdevice" [value]="device.id">{{device.id}}{{" /"}}
+                                {{device.name}} </mat-option>
+
+                        </mat-select>
+
+                        <mat-error *ngIf="selectValid && selectValid.hasError('required')">You must make a
+                            selection</mat-error>
+                        <mat-error *ngIf=" selectValid &&!selectValid.hasError('required')">
+                            Your selection is invalid
+                        </mat-error></mat-form-field>
                     <div>
-                        <button mat-button matStepperNext>Next</button>
+                        <button mat-button matStepperNext [disabled]="!firstFormGroup.valid">Next</button>
                     </div>
                 </form>
             </mat-step>
-            <mat-step [stepControl]="secondFormGroup" optional>
+            <mat-step [stepControl]="secondFormGroup">
                 <form [formGroup]="secondFormGroup">
-                    <ng-template matStepLabel>Fill out your address</ng-template>
+                    <ng-template matStepLabel>Fill Out Your Card Code</ng-template>
                     <mat-form-field>
-                        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                        <input matInput placeholder="Serial Number" formControlName="secondCtrl" required>
                     </mat-form-field>
                     <div>
                         <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
+                        <button mat-button matStepperNext [disabled]="!secondFormGroup.valid">Next</button>
                     </div>
                 </form>
             </mat-step>
@@ -52,10 +62,12 @@
                 <ng-template matStepLabel>Done</ng-template>
                 You are now done.
                 <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
+                    <button mat-button color="warn" matStepperPrevious>Back</button>
+                    <button mat-button color="accent" (click)="stepper.reset()">Reset</button>
+                    <button mat-button color="primary" (click)="submit()"
+                        [disabled]="!secondFormGroup.valid || !firstFormGroup.valid">Submit</button>
                 </div>
             </mat-step>
-        </mat-stepper>
+        </mat-vertical-stepper>
     </div>
 </div>

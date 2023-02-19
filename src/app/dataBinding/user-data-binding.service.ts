@@ -193,6 +193,46 @@ export class UserDataBindingService {
 
   }
 
+  refillAccount(senddata: any) {
+    this.http.post(this.apiUrl + "UserHome/RechargeAccount()", senddata).subscribe(data => {
+
+      if (data === "1") {
+        let snackBarRef = this._snackBar.open("Account Has Been Refilled Successfully", 'Ok', {
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+
+
+        })
+
+      }
+      else if (data === 11) {
+        let snackBarRef = this._snackBar.open("Recharge Card Expired", 'Ok', {
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+
+
+        })
+      } else if (data === 12) {
+        let snackBarRef = this._snackBar.open("Recharge Card Already Used. Try Another One !", 'Ok', {
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+
+
+        })
+      } else if (data === 10) {
+        let snackBarRef = this._snackBar.open("Unvalid Card Number. Try Another One!", 'Ok', {
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+
+
+        })
+      }
+
+
+
+
+    });
+  }
 
 
 
