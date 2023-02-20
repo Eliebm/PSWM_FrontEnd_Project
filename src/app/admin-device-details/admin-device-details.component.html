@@ -1,0 +1,147 @@
+<div class="main-container">
+    <nav class="navbar navbar-expand-sm bg-success navbar-dark fixed-top">
+        <div class=" container-fluid">
+            <a class="navbar-brand" href="/Admin/Home">Prepaid Smart Water Metering</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/Home">Home</a>
+                    </li>
+
+
+
+                </ul>
+                <ul class="navbar-nav ms-auto" style="justify-items:center;">
+
+                    <li><button class="btn btn-danger btn-sm" (click)="logout()">Sign-out</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class=" row" *ngFor="let deviceD of deviceDetails">
+        <div class="left-section">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>General Info <label style="color:blue;">
+                                {{deviceid}} </label></mat-card-title>
+                    </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li>
+                            <h3>
+                                Name : {{deviceD.name}}
+                            </h3>
+                        </li>
+                        <li>
+                            <h3>Customer : {{deviceD.macaddres}} </h3>
+                        </li>
+                        <li>
+                            <h3>Idle Days : {{deviceD.idleday}} </h3>
+                        </li>
+                        <li>
+                            <h3>Cycle From : {{deviceD.cyclefrom}}</h3>
+                        </li>
+                        <li>
+                            <h3>Expiry Date : {{deviceD.cycleto}}</h3>
+                        </li>
+                    </ul>
+
+                </mat-card-content>
+            </mat-card>
+            <h6></h6>
+
+        </div>
+        <div class="right-section">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>Control Panel</mat-card-title>
+                    </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                    <ul>
+                        <li>
+                            <h3>Status : {{deviceD.adminstatus}}</h3>
+                        </li>
+                        <li>
+                            <h3>Refill Amount : {{deviceD.rechargequantity}} </h3>
+                        </li>
+                        <li>
+                            <h3>Used Amount : {{deviceD.quantityused}}</h3>
+                        </li>
+                        <li>
+                            <h3>Remaining : {{deviceD.remainingquantity}}</h3>
+                        </li>
+                        <li>
+
+                            <form class="row-form" [formGroup]="statusForm">
+                                <h3>Block User</h3>
+                                <mat-slide-toggle color="primary"
+                                    [checked]="deviceD.adminstatus === 'Authorized' ? true : false" matTooltip="ON/OFF"
+                                    (change)="turnOn($event)">
+
+                                </mat-slide-toggle>
+                            </form>
+                        </li>
+
+
+                    </ul>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <hr class="rounded">
+    <form class="form-year" [formGroup]="selectdayForm">
+        <label>Select Day</label>
+        <input type="date" formControlName="selectedDay" style="width:11em; margin-left: 20px;">
+        <button mat-mini-fab color="primary" aria-label="Select day " (click)="changeday()">
+            <mat-icon>refresh</mat-icon>
+        </button>
+    </form>
+
+    <div class="row" *ngIf="waterDailyData?.length">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Time</th>
+                        <th>Water Amount (L)</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let water of waterDailyData">
+                        <td>{{water.Time}}</td>
+                        <td>{{water.watervalue}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="table-success">
+                    <tr>
+                        <th>Time</th>
+                        <th>Turbidity (NTU)</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let turbid of TurbidityDailyData">
+                        <td>{{turbid.Time}}</td>
+                        <td>{{turbid.turbidityvalue}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

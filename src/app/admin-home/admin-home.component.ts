@@ -98,7 +98,7 @@ export class AdminHomeComponent implements OnInit {
   }
 
   deviceDetails(id: any) {
-    // location.href = "User/DeviceDetails/" + id;
+    location.href = "AdminDeviceDetails/" + id;
 
   }
 

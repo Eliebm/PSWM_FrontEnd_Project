@@ -16,6 +16,10 @@ td button:hover {
     color: white;
 }
 
+table {
+    margin-left: 6%;
+    width: 90%;
+}
 
 @media screen and (min-width:1024px) {
     form {
@@ -69,6 +73,14 @@ td button:hover {
         margin-left: 25%;
         margin-top: 10px;
     }
+
+    .table-responsive {
+        max-width: 90%;
+        margin-left: 6%;
+        max-height: 600px;
+        overflow-y: auto;
+        overflow-x: auto;
+    }
 }
 
 @media screen and (max-width:750px) {
@@ -92,5 +104,15 @@ td button:hover {
         max-width: 50%;
         margin-left: 25%;
         margin-top: 10px;
+    }
+
+    .table-responsive {
+        width: 90%;
+        margin-left: 6%;
+        max-height: 600px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+
+
     }
 }

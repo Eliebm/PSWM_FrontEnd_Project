@@ -47,6 +47,29 @@ export class AdminDataBindingService {
 
 
   }
+  adminfetchDeviceDetails(deviceid: any): Observable<Iadmindevice[]> {
+    var send = { "id": deviceid }
+    return this.http.post<Iadmindevice[]>(this.apiUrl + 'Ardmin/AdminFetchDeviceDetails()', send).pipe(tap(data => data), catchError(this.handleError));
+
+  }
+  adminturnDeviceOnOff(deviceid: any, userstatus: any) {
+    var send = { "id": deviceid, "userstatus": userstatus };
+    this.http.post(this.apiUrl + "Ardmin/AdminTurndeviceOnOff()", send).subscribe(data => {
+      if (data === "1") {
+        this._snackBar.open("Device Gov.Satus has changed", 'Ok', {
+          horizontalPosition: "center",
+          verticalPosition: "bottom",
+          duration: 4000,
+
+        })
+
+      }
+
+    });
+
+
+  }
+
 
 
 

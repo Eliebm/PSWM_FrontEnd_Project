@@ -33,9 +33,7 @@ export class DeviceDetailsComponent implements OnInit {
 
   statusForm = new FormGroup({
     statusSlide: new FormControl(null, [Validators.required])
-  }
-
-  );
+  });
 
 
   ngOnInit(): void {
