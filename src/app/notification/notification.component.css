@@ -15,7 +15,7 @@
 }
 
 .table-responsive {
-    padding-top: 10%;
+
     padding-left: 2%;
     padding-right: 2%;
     max-width: 100%;
@@ -54,12 +54,17 @@ td button:hover {
 
 @media screen and (min-width:1024px) {
     .table-responsive {
-        padding-top: 5%;
+        margin-top: 5%;
         max-width: 90%;
         margin-left: 4.5%;
         padding-bottom: 150px;
+        max-height: 600px;
+        overflow-y: auto;
+
 
     }
+
+
 
 
 }
@@ -69,6 +74,16 @@ td button:hover {
         padding-top: 15%;
     }
 
+    .table-responsive {
+        margin-top: 10%;
+        max-width: 90%;
+        margin-left: 4.5%;
+        padding-bottom: 150px;
+        max-height: 600px;
+        overflow-y: auto;
+
+
+    }
 
 
 }
@@ -77,6 +92,8 @@ td button:hover {
 
     .table-responsive {
         padding-top: 20%;
+        max-height: 600px;
+        overflow-y: auto;
     }
 
     .nodata {

@@ -16,7 +16,7 @@ import { Idevice, ISignup } from '../Model';
 })
 export class HomeComponent implements OnInit {
   userId: any;
-  searchString: string = ''
+  searchString: string = '';
   refresh_token: any;
   access_token: any;
   isDisable: boolean = false;

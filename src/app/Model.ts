@@ -51,6 +51,25 @@ export interface Idevice {
 
 
 }
+export interface Iadmindevice {
+    id: any;
+    macaddres: any;
+    name: any;
+
+    cityname: any;
+    street: any;
+    building: any;
+    idleday: any;
+    rechargequantity: any;
+    cyclefrom: any;
+    cycleto: any;
+    quantityused: any;
+    remainingquantity: any;
+    userstatus: any;
+    adminstatus: any;
+
+
+}
 
 export interface Iwater {
 

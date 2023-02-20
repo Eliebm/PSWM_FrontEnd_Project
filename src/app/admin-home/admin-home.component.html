@@ -1,1 +1,118 @@
-<p>admin-home works!</p>
+<div class="main-container">
+    <nav class="navbar navbar-expand-sm bg-success navbar-dark fixed-top">
+        <div class=" container-fluid">
+            <a class="navbar-brand" href="/Admin/Home">Prepaid Smart Water Metering</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/Home">Home</a>
+                    </li>
+
+
+
+                </ul>
+                <ul class="navbar-nav ms-auto" style="justify-items:center;">
+
+                    <li><button class="btn btn-danger btn-sm" (click)="logout()">Sign-out</button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+
+    <form class="form" [formGroup]="FetchByCity">
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>Province</mat-label>
+            <mat-select formControlName="province" [(value)]="provinceSelectedid"
+                (selectionChange)="provinceSelected(provinceSelectedid)" autocomplete="off">
+                <mat-option *ngFor=" let province of provinceData" value="{{province.Id}}">
+                    {{province.Name}}
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="provinceValidation && provinceValidation.hasError('required')">
+                Province is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>District</mat-label>
+            <mat-select formControlName="district" [(value)]="districtSelectedid"
+                (selectionChange)="selectedDistrict(districtSelectedid)" autocomplete="off"
+                [disabled]="districtDisable">
+                <mat-option *ngFor=" let dis of districtData" value="{{dis.Id}}">
+                    {{dis.Name}}
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="districtValidation && districtValidation.hasError('required')">
+                district is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-form" appearance="fill">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" [(value)]="citySelectedid" autocomplete="off" [disabled]="cityDisable">
+                <mat-option *ngFor=" let city of citiesData" value="{{city.Id}}">
+                    {{city.Name}}
+                </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="cityValidation && cityValidation.hasError('required')">
+                city is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <button mat-icon-button color="primary" aria-label="search by select icon" #tooltip="matTooltip"
+            matTooltip="Search!" matTooltipPosition="below" (click)="SubmitSelection()" [disabled]="!FetchByCity.valid">
+            <mat-icon>search</mat-icon>
+        </button>
+    </form>
+    <div class="row">
+        <mat-form-field class="searchbar" appearance="legacy">
+            <mat-label>Search...</mat-label>
+            <input matInput type="text" aria-label="searchbar" name="searchString" (keyup)="filterBySearch($event)">
+        </mat-form-field>
+
+    </div>
+    <br>
+    <div class="table-responsive" *ngIf="devicesData?.length">
+        <table class="table table-light table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Owner</th>
+                    <th>City</th>
+                    <th>Quantity Meter</th>
+                    <th>Status</th>
+                    <th>Gov.Status</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let device of filteredDeviceData">
+                    <td>{{device.id}}</td>
+                    <td> {{device.name}}</td>
+                    <td>{{device.macaddres}}</td>
+                    <td>{{device.cityname}}</td>
+                    <td><mat-progress-bar color="primary" mode="determinate" [value]="device.quantityused"
+                            matTooltip="{{device.quantityused}} % of {{device.rechargequantity}}">
+                        </mat-progress-bar></td>
+                    <td><mat-slide-toggle color="primary" [checked]="device.userstatus === 'true' ? true : false"
+                            disabled="true" [matTooltip]="device.userstatus ==='true' ? 'ON' : 'OFF'">
+
+                        </mat-slide-toggle></td>
+                    <td><mat-slide-toggle color="accent" [checked]="device.adminstatus === 'true' ? true : false"
+                            disabled="true" [matTooltip]="device.adminstatus ==='true' ? 'Authorized' : 'Unauthorized'">
+
+                        </mat-slide-toggle></td>
+                    <td><button mat-icon-button matTooltip="More details" color="primary" aria-label="table more button"
+                            (click)="deviceDetails(device.id)">
+                            <mat-icon>menu</mat-icon>
+                        </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
