@@ -7,31 +7,37 @@
         </button>
     </form>
     <div class="row">
-        <highcharts-chart class="chart" [Highcharts]="Highcharts" [options]="chart">
+
+        <highcharts-chart class="chart" [Highcharts]="Highcharts" [options]="chart" *ngIf="firstAvailableData.length">
         </highcharts-chart>
-        <highcharts-chart class="piechart" [Highcharts]="Highcharts" [options]="piechart">
+        <highcharts-chart class="piechart" [Highcharts]="Highcharts" [options]="piechart"
+            *ngIf="firstAvailableData.length">
         </highcharts-chart>
     </div>
-    <highcharts-chart class="turbiditychart" [Highcharts]="Highcharts" [options]="turbiditychart">
+    <highcharts-chart class="turbiditychart" [Highcharts]="Highcharts" [options]="turbiditychart"
+        *ngIf="firstAvailableData.length">
     </highcharts-chart>
     <hr class="rounded">
     <form class="form-year" [formGroup]="selectmonthForm">
         <label>Select Month</label>
-        <input type="month" formControlName="selectedMonth" [placeholder]="month">
+        <input type="month" formControlName="selectedMonth" [placeholder]="month" style="width:11em;">
         <button mat-mini-fab color="primary" aria-label="Select year " (click)="changeMonthChart()">
             <mat-icon>refresh</mat-icon>
         </button>
     </form>
-    <highcharts-chart class="turbiditychart" [Highcharts]="Highcharts" [options]="dailychart">
+
+    <highcharts-chart class="turbiditychart" [Highcharts]="Highcharts" [options]="dailychart"
+        *ngIf="SecondAvailableData.length">
     </highcharts-chart>
     <hr class="rounded">
     <form class="form-year" [formGroup]="selectdayForm">
         <label>Select Day</label>
-        <input type="date" formControlName="selectedDay">
+        <input type="date" formControlName="selectedDay" style="width:11em; margin-left: 20px;">
         <button mat-mini-fab color="primary" aria-label="Select day " (click)="changeday()">
             <mat-icon>refresh</mat-icon>
         </button>
     </form>
+
     <div class="row" *ngIf="waterDailyData?.length">
         <table class="table">
             <thead class="table-dark">

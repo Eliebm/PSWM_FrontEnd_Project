@@ -99,6 +99,8 @@ mat-icon {
         flex-wrap: nowrap;
         min-height: 110%;
         padding-top: 4%;
+        overflow-x: auto;
+        max-width: 99.9%;
 
     }
 
@@ -116,18 +118,18 @@ mat-icon {
     .left-section {
         width: 85%;
 
-        margin-left: 5%
+        padding-left: 10%
     }
 
     .right-section {
         width: 85%;
 
-        margin-left: 5%
+        padding-left: 5%;
     }
 
     .notifications {
         position: absolute;
-        margin-left: 43%;
+        padding-left: 43%;
         margin-top: 2.5em;
 
     }

@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import * as Highcharts from 'highcharts';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { UserDataBindingService } from 'src/app/dataBinding/user-data-binding.service';
@@ -9,7 +11,7 @@ import { UserDataBindingService } from 'src/app/dataBinding/user-data-binding.se
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.css'],
   standalone: true,
-  imports: [HighchartsChartModule]
+  imports: [HighchartsChartModule, MatIconModule, CommonModule]
 })
 export class ChartsComponent implements OnInit {
   @Input() deviceid: string | undefined;
@@ -18,6 +20,7 @@ export class ChartsComponent implements OnInit {
 
   linechart: any;
   binddata: any;
+  AvailableData: any;
 
 
 
@@ -35,7 +38,7 @@ export class ChartsComponent implements OnInit {
 
   yearchart(): void {
     this._databind.firstChart(this.deviceid).subscribe(data => {
-      data
+      this.AvailableData = data[0].category
 
       this.linechart = {
         chart: {

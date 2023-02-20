@@ -12,6 +12,7 @@ hr {
 .form-year label,
 input {
     margin-right: 5px;
+
 }
 
 form {
@@ -27,6 +28,22 @@ label {
 table {
     text-align: center;
 }
+
+.nodata {
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+.icon-display {
+    transform: scale(2.5);
+    margin-bottom: 15px;
+    color: red;
+}
+
 
 @media screen and (min-width:1024px) {
     form {
@@ -66,6 +83,11 @@ table {
         margin-left: 17%;
         margin-right: 2.5%;
     }
+
+    .nodata {
+        padding-left: 7.5%;
+        padding-top: 10px;
+    }
 }
 
 @media screen and (min-width:767px) and (max-width:1020px) {
@@ -97,6 +119,11 @@ table {
     table {
         width: 78%;
         margin-left: 11%;
+    }
+
+    .nodata {
+        padding-left: 5%;
+        margin-top: 10px;
     }
 }
 
@@ -132,6 +159,11 @@ table {
     table {
         width: 78%;
         margin-left: 10%;
+    }
+
+    .nodata {
+
+        margin-top: 10px;
     }
 
 }

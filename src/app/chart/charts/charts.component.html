@@ -1,6 +1,13 @@
 <div class="column">
     <hr class="rounded">
-    <highcharts-chart [Highcharts]="Highcharts" [options]="linechart">
+    <div class="nodata" *ngIf="!AvailableData.length">
+        <h2>Yearly Average Water Amount And Turbidity</h2>
+        <mat-icon class=" icon-display">warning</mat-icon>
+        <h2>No Recordes !
+
+        </h2>
+    </div>
+    <highcharts-chart [Highcharts]="Highcharts" [options]="linechart" *ngIf="AvailableData.length">
     </highcharts-chart>
     <hr class="rounded">
 

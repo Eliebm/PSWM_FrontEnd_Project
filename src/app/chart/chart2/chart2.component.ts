@@ -36,6 +36,9 @@ export class Chart2Component implements OnInit {
   yearselection: any[] = [];
   waterDailyData: Idaily[] = [];
   TurbidityDailyData: Idaily[] = [];
+  firstAvailableData: any;
+  SecondAvailableData: any;
+
 
 
 
@@ -106,6 +109,7 @@ export class Chart2Component implements OnInit {
   columnChart(year: any): void {
 
     this._databind.yearChart(this.deviceid, year).subscribe(data => {
+      this.firstAvailableData = data[0].category;
       this.chart = {
         chart: {
           type: 'column'
@@ -242,7 +246,7 @@ export class Chart2Component implements OnInit {
 
   dailyChart(month: any): void {
     this._databind.dailyWaterTurbidityChart(this.deviceid, month).subscribe(data => {
-      data
+      this.SecondAvailableData = data[0].category
 
       this.dailychart = {
         chart: {
