@@ -25,6 +25,12 @@ label {
     font-size: large;
 }
 
+.table-responsive {
+    max-height: 350px;
+    overflow-y: auto;
+    text-align: center;
+}
+
 table {
     text-align: center;
 }
@@ -78,8 +84,14 @@ table {
         margin-left: 10%;
     }
 
+    .table-responsive {
+        max-width: 40%;
+        margin-left: 10%;
+
+    }
+
     table {
-        max-width: 25%;
+        max-width: 80%;
         margin-left: 17%;
         margin-right: 2.5%;
     }
@@ -116,9 +128,16 @@ table {
         margin-left: 10%;
     }
 
+    .table-responsive {
+        max-width: 75%;
+        margin-left: 10%;
+
+    }
+
     table {
-        width: 78%;
-        margin-left: 11%;
+        max-width: 80%;
+        margin-left: 17%;
+        margin-right: 2.5%;
     }
 
     .nodata {
@@ -156,9 +175,16 @@ table {
         margin-bottom: 10px;
     }
 
-    table {
-        width: 78%;
+    .table-responsive {
+        max-width: 80%;
         margin-left: 10%;
+
+    }
+
+    table {
+        max-width: 80%;
+        margin-left: 17%;
+        margin-right: 2.5%;
     }
 
     .nodata {

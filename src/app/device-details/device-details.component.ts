@@ -73,8 +73,12 @@ export class DeviceDetailsComponent implements OnInit {
     if (value.checked === true) {
       this._databind.turnDeviceOnOff(this.deviceid, "true");
     }
-    else { this._databind.turnDeviceOnOff(this.deviceid, "false"); }
-    this.fetchdevicedetails();
+    else {
+      this._databind.turnDeviceOnOff(this.deviceid, "false");
+      location.href = "User/DeviceDetails/" + this.deviceid;
+      this.notiFaultCount();
+    }
+
 
 
   }
