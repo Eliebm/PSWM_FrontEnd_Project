@@ -80,10 +80,10 @@
                         <li>
 
                             <form class="row-form" [formGroup]="statusForm">
-                                <h3>Block User</h3>
+                                <h3>Device State</h3>
                                 <mat-slide-toggle color="primary"
-                                    [checked]="deviceD.adminstatus === 'Authorized' ? true : false" matTooltip="ON/OFF"
-                                    (change)="turnOn($event)">
+                                    [checked]="deviceD.adminstatus === 'Authorized' ? true : false"
+                                    matTooltip="Deactivate/Activate" (change)="turnOn($event)">
 
                                 </mat-slide-toggle>
                             </form>

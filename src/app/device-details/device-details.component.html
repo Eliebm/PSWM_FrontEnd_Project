@@ -69,9 +69,9 @@
                         <li>
 
                             <form class="row-form" [formGroup]="statusForm">
-                                <h3>Device Status</h3>
+                                <h3>Device </h3>
                                 <mat-slide-toggle color="primary"
-                                    [checked]="deviceD.userstatus === 'true' ? true : false" matTooltip="ON/OFF"
+                                    [checked]="deviceD.userstatus === 'true' ? true : false" matTooltip="OFF/ON"
                                     (change)="turnOn($event)">
 
                                 </mat-slide-toggle>
