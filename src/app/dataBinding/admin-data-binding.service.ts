@@ -21,21 +21,21 @@ export class AdminDataBindingService {
 
   adminfetchProvinces(): Observable<Iprovince[]> {
 
-    return this.http.post<Iprovince[]>(this.apiUrl + 'Ardmin/AdminGetAllProvinces()', {})
+    return this.http.post<Iprovince[]>(this.apiUrl + 'Admin/AdminGetAllProvinces()', {})
       .pipe(tap(data => data)
         , catchError(this.handleError));
 
   }
   adminfetchDistrict(id: any): Observable<Idistrict[]> {
     var data = { 'Id': id };
-    return this.http.post<Idistrict[]>(this.apiUrl + 'Ardmin/AdminGetAllDistricts()', data)
+    return this.http.post<Idistrict[]>(this.apiUrl + 'Admin/AdminGetAllDistricts()', data)
       .pipe(tap(data => data), catchError(this.handleError));
 
   }
 
   adminfetchCities(id: any): Observable<Icity[]> {
     var data = { 'Id': id }
-    return this.http.post<Icity[]>(this.apiUrl + 'Ardmin/AdminGetAllCities()', data)
+    return this.http.post<Icity[]>(this.apiUrl + 'Admin/AdminGetAllCities()', data)
       .pipe(tap(data => data), catchError(this.handleError));
 
   }
@@ -43,18 +43,18 @@ export class AdminDataBindingService {
   adminfetchAllDevices(id: any): Observable<Iadmindevice[]> {
     var send = { "cityid": id }
 
-    return this.http.post<Iadmindevice[]>(this.apiUrl + 'Ardmin/AdminFetchAllUsers()', send).pipe(tap(data => data), catchError(this.handleError));
+    return this.http.post<Iadmindevice[]>(this.apiUrl + 'Admin/AdminFetchAllUsers()', send).pipe(tap(data => data), catchError(this.handleError));
 
 
   }
   adminfetchDeviceDetails(deviceid: any): Observable<Iadmindevice[]> {
     var send = { "id": deviceid }
-    return this.http.post<Iadmindevice[]>(this.apiUrl + 'Ardmin/AdminFetchDeviceDetails()', send).pipe(tap(data => data), catchError(this.handleError));
+    return this.http.post<Iadmindevice[]>(this.apiUrl + 'Admin/AdminFetchDeviceDetails()', send).pipe(tap(data => data), catchError(this.handleError));
 
   }
   adminturnDeviceOnOff(deviceid: any, userstatus: any) {
     var send = { "id": deviceid, "userstatus": userstatus };
-    this.http.post(this.apiUrl + "Ardmin/AdminTurndeviceOnOff()", send).subscribe(data => {
+    this.http.post(this.apiUrl + "Admin/AdminTurndeviceOnOff()", send).subscribe(data => {
       if (data === "1") {
         this._snackBar.open("Device Gov.Satus has changed", 'Ok', {
           horizontalPosition: "center",
